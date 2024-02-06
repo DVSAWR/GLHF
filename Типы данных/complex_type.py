@@ -10,7 +10,6 @@ print(z.imag)
 
 print(type(z))
 
-
 print(complex())
 # 0j
 print(complex(1))
@@ -22,8 +21,6 @@ print(complex(3, 5))
 print(complex(1, 2e-2))
 # (1+0.02j)
 
-# Преобразование в complex тип из строки
-# обратите внимание на пробелы в аргументах
 print(complex(' 1+2j '))
 # (1+2j)
 print(complex('   0.1+2.0j'))
