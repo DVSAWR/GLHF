@@ -1,5 +1,4 @@
-# main
- 
+# GLHF
 **PRESS 'F' TO PAY RESPECT**
 
 
