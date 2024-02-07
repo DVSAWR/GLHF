@@ -48,4 +48,5 @@ print('{a} {b} {b} {a}'.format(**y))
 preview('format_map()')
 ...
 
+preview('index()')
 
