@@ -18,4 +18,3 @@
 | Байтовая строка        | (b'\x00\x00')                                           | bytearray                | a = bytearray(2)                                       | Mutable                      |
 | Просмотр памяти        | 0x1477a5813a00                                          | memoryview               | a = memoryview<br>(bytes(15))                          |                              |
 
-
