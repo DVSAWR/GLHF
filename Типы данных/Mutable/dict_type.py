@@ -29,3 +29,17 @@ print(list(reversed(d.values())))
 
 print(list(reversed(d.items())))
 # [('four', 4), ('three', 3), ('two', 2), ('one', 1)]
+
+# Создание словаря \ Генерация словаря
+
+lst = [i for i in range(10)]
+print(lst)
+d = {k: v for k, v in zip(range(10), lst)}
+print(d)
+
+d = {i: i * 10 for i in range(10)}
+print(d)
+
+d = {(x, y): x + y for x, y in zip('12345', 'QWERTY')}
+print(d)
+
