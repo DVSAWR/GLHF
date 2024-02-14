@@ -108,3 +108,80 @@ mcm_obj.method('zxc')
 
 preview('compile()')
 # Позволяет скомпилировать блок кода для выполнения в exec()
+x = compile('x = 1\nz = x + 5\nprint(z)', 'test', 'exec')
+exec(x)
+y = compile('print("4 + 5 =", 4 + 5)', 'test', 'eval')
+eval(y)
+
+preview('complex()')
+# Создает/преобразовывает число/строку в комплексное число
+print(complex())
+print(complex(1.5))
+print(complex('          1+2j'))
+
+preview('delattr()')
+# Позволяет удалить атрибут по имени указанного объекта
+class MyObject:
+    name = 'NAME'
+    phone = '12345'
+
+print(dir(MyObject)[-2:])
+delattr(MyObject, 'phone')
+print(dir(MyObject)[-2:])
+
+preview('dict()')
+# Создание словаря Python из ключевых аргументов/итерируемого объекта
+x = dict(q=1, w=2, e=3)
+print(x)
+
+x = dict(zip([i for i in range(4)], [i for i in range(4)]))
+print(x)
+
+x = 'qwe asd zxc'
+d = {k: v for k, v in zip(x.split(), range(4))}
+print(d)
+
+preview('dir()')
+# Возвращает список допустимых атрибутов объекта
+class MyObject:
+    name = 'NAME'
+    phone = '12345'
+
+print(dir(MyObject)[-2:])
+delattr(MyObject, 'phone')
+print(dir(MyObject))
+
+preview('divmod()')
+# Производит деление чисел с остатком
+print(divmod(101, 25))
+
+seconds = 50000
+minutes, seconds = divmod(seconds, 60)
+hours, minutes = divmod(minutes, 60)
+print(f'\n h = {hours}, m = {minutes}, s = {seconds}')
+
+
+preview('enumerate()')
+# Счетчик элементов последовательности в циклах
+
+def notenumerate(seq, start=0):
+    n = start
+    for element in seq:
+        yield n, element
+        n += 1
+
+seq = list('qwe')
+for i, v in enumerate(seq, 1):
+    print(f'{i} = {v}')
+
+print('')
+
+for i, v in notenumerate(seq, 1):
+    print(f'{i} = {v}')
+
+print('')
+
+seasons = 'Spring Summer Fall Winter'.split()
+print(list(enumerate(seasons)))
+
+
