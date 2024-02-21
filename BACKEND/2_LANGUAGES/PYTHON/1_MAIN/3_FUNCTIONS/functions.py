@@ -805,3 +805,157 @@ x = sorted(student, key=lambda student: student[1])
 print(x)
 
 print('')
+
+class MyClass:
+    def __init__(self, name, grade, age):
+        self.name = name
+        self.grade = grade
+        self.age = age
+
+    def __repr__(self):
+        return repr((self.name, self.grade, self.age))
+
+
+student = [
+    MyClass('name', 'A', 15),
+    MyClass('name', 'A', 13),
+    MyClass('name', 'B', 14),
+]
+
+x = sorted(student, key=lambda student: student.age)
+print(x)
+x = sorted(student, key=lambda student: student.grade)
+print(x)
+
+
+preview('staticmethod()')
+# Преобразует метод класса в статический метод этого класса
+
+class MyClass:
+    def method(self):
+        return 'instance method calles', self
+
+    @staticmethod
+    def mysstaticmethod():
+        return 'static method called'
+
+
+obj = MyClass()
+print(obj.method())
+print(obj.mysstaticmethod())
+
+
+print('')
+
+
+class Date(object):
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
+
+
+    @classmethod
+    def from_string(cls, date_as_string):
+        day, month, year = map(int, date_as_string.split('.'))
+        rdate = cls(day, month, year)
+        return rdate
+
+    @staticmethod
+    def is_date_valid(date_as_string):
+        if date_as_string.count('.') == 2:
+            day, month, year = map(int, date_as_string.split('.'))
+            return day <= 31 and month <= 12 and year <= 2099
+
+
+    def string_to_db(self):
+        return f'{self.year}-{self.month}-{self.day}'
+
+
+
+
+dates = [
+    '30.12.2020',
+    '30-12-2020',
+    '01.01.2021',
+    '12.31.2020',
+]
+
+for i in dates:
+    if Date.is_date_valid(i):
+        date = Date.from_string(i)
+        string_to_db = date.string_to_db()
+        print(string_to_db)
+    else:
+        print(f'wrong date format')
+
+
+preview('str()')
+# Получает строковую версию объекта
+
+x = 10
+
+print(f'{x} = {type(x)}')
+print(f'{str(x)} = {type(str(x))}')
+
+
+preview('sum()')
+# Вычисляет сумму всех элементов в последовательности
+
+x = ('01.01.1960qev QWE')
+print(list(x))
+lst = []
+for i in list(x):
+    if i.isdigit():
+        lst.append(int(i))
+    else:
+        continue
+print(lst)
+print(sum(lst))
+
+print(list(range(10)))
+print(sum(range(10)))
+
+
+preview('super()')
+# Обеспечивает доступ к оригиналам наследованных методов
+
+class A:
+    def method(self):
+        print('method class A')
+
+
+class B(A):
+    def method(self):
+        super().method()
+        print('method class B')
+
+
+x = B()
+print('x.method()')
+x.method()
+
+
+preview('tuple()')
+# Создает кортеж или преобразует последовательность в кортеж
+
+print(tuple('QWE'))
+print(tuple(range(0, 25, 4)))
+print(tuple({'Q': 1, 'F': 2}))
+
+
+preview('type()')
+# Возвращает тип объекта и является собственным метаклассом языка Python
+
+print(type('1'))
+print(type(1))
+print(type(1.0))
+print(type(complex(1)))
+print(type([1, 0]))
+print(type((1, 0)))
+print(type({1: 0}))
+print(type({1, 2, 3}))
+print(type(bytes(1)))
+print(type(bytearray([1, 2, 3])))
+
+
