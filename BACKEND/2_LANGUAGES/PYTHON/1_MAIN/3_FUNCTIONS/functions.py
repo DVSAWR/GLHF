@@ -959,3 +959,86 @@ print(type(bytes(1)))
 print(type(bytearray([1, 2, 3])))
 
 
+preview('vars()')
+# Возвращает словарь пространства имен объекта
+
+class MyObject:
+    name = 'Q'
+    phone = '13'
+    country = 'RU'
+    age = '9'
+
+x = vars(MyObject)
+for i, v in x.items():
+    print(i, '=', v)
+
+
+preview('zip()')
+# Объединяет элементы последовательностей в список кортежей
+
+x = zip([1, 2, 3], ['Q', 'W', 'E'])
+print(x)
+
+for i in x:
+    print(i)
+
+
+print(list(zip(range(3), range(100))))
+
+print('strict=True == zip(len==len)')
+
+
+x = list(range(3))
+y = list(range(3))
+print(list(zip(x, y)))
+
+x2, y2 = zip(*zip(x, y))
+print(x2)
+print(y2)
+print(list(zip(x2, y2)))
+
+
+print('')
+nums = list(range(4))
+nums2 = list(range(4, 8))
+names = 'zero one two three'.split()
+
+print(nums, nums2, names)
+
+for i in range(len(nums)):
+    a, b, c = nums[i], nums2[i], names[i]
+    print(f'{a} - {b} - {c}')
+
+print('\nzip')
+
+for a, b, c in zip(nums, nums2, names):
+    print(f'{a} - {b} - {c}')
+
+
+print('')
+
+print(dict(zip(names, nums)))
+
+print('')
+x = {k: v for k, v in zip(names, nums)}
+y = {k: v for v, k in zip(names, nums)}
+
+print(x, '\n', y)
+
+print('')
+x = {'zero': 0, 'one': 1, 'two': 2, 'three': 3}
+y = tuple(x.items())
+
+print(x, '\n', y)
+
+rd = {k: v for v, k in y}
+print(f'\n{x}\n{rd}')
+
+print('')
+d = {k: v for k, v in zip('QWE ASD ZXC'.split(), range(3))}
+print(d)
+rd = {k: v for v, k in tuple(d.items())}
+print(rd)
+
+print(tuple(d.items()))
+
