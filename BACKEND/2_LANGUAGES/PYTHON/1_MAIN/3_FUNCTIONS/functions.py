@@ -6,7 +6,7 @@ def preview(x):
 
 
 preview('abs()')
-
+# Позволяет получить абсолютное значение числа
 complex_number = (3 + 10j)
 abs_complex_number = abs(complex_number)
 print(f"Абсолютное значение {complex_number} это {abs_complex_number}")
@@ -21,6 +21,7 @@ abs_x = abs(x)
 print(f"Абсолютное значение {x} это {abs_x}")
 
 preview('all()')
+# Проверяет, что все элементы в последовательности True
 print(all([True, True, True]))
 print(all([True, False, True]))
 
@@ -30,12 +31,14 @@ print(all([type(x) is int for x in num1]))
 print(all([type(x) is int for x in num2]))
 
 preview('any()')
+# Проверяет, что хотя бы один элемент в последовательности True
 num1 = range(0, 20, 2)
 num2 = range(0, 15, 2)
 print(any([x > 15 for x in num1]))
 print(any([x > 15 for x in num2]))
 
 preview('ascii()')
+# Возвращает читаемую версию объекта, экранируя символы, отличные от ASCII
 line = 'My name is Даниил'
 x = ascii(line)
 print(x)
@@ -69,9 +72,9 @@ print('bytes(4) =', bytes(4))
 print('bytes("Привет", encoding="utf-8" =', bytes("Привет", encoding="utf-8"))
 
 preview('callable()')
-
-
 # Проверяет, является ли объект вызываемым
+
+
 class MyClass:
     def __call__(self, *args, **kwargs):
         print('called')
@@ -83,6 +86,7 @@ print('callable(5) =', callable(5))
 
 preview('chr()')
 # Преобразует число в символ Юникода, обратная операция ord()
+
 print("ord('q') =", ord('q'))
 print("chr(113) =", chr(113))
 
@@ -92,9 +96,10 @@ for i in range(49, 58):
 print(lst)
 
 preview('classmethod()')
-
-
 # Позволяет преобразовать обычный метод в метод класса
+
+
+
 class MyClassMethod():
 
     @classmethod
@@ -319,6 +324,7 @@ print(hash('1'))
 print(hash((1, 2, 3)))
 
 preview('help()')
+# Позволяет получить справку по любому объекту Python
 print(help(hash))
 
 print(lst[1])
