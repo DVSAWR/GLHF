@@ -130,7 +130,7 @@
 
 ## DATA STRICTIRES COMPLEXITY
 
-| **DATA STRUCTURE** | **INDEXING** | **SEARCH** | **INSERTION** | **DELETION** 
+| **DATA STRUCTURE** | **INDEXING** | **SEARCH** | **INSERTION** | **DELETION** |
 |--------------------|--------------|------------|---------------|--------------|
 | BASIC ARRAY        | O(1)         | O(n)       |               |              |
 | DINAMIC ARRAY      | O(1)         | O(n)       | O(n)          | O(n)         |
@@ -144,4 +144,8 @@
 | RED-BLACK TREE     | O(log n)     | O(log n)   | O(log n)      | O(log n)     |
 | SPLAY TREE         |              | O(log n)   | O(log n)      | O(log n)     |
 | AVL TREE           | O(log n)     | O(log n)   | O(log n)      | O(log n)     |
+
+
+
+
 

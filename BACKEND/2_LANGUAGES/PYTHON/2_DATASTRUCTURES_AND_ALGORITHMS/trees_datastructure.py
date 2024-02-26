@@ -1,6 +1,7 @@
 def preview(x):
     print(f'\n---- {x} ----')
 
+
 def preview(x):
     print(f'\n---- {x} ----')
 
@@ -209,3 +210,4 @@ def main():
     print(bst.exists(19))
 
 main()
+
