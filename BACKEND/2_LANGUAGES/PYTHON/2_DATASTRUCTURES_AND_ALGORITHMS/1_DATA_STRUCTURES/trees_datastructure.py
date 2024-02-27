@@ -1,10 +1,6 @@
 def preview(x):
     print(f'\n---- {x} ----')
 
-
-def preview(x):
-    print(f'\n---- {x} ----')
-
 preview('TREES')
 print()
 
@@ -210,9 +206,3 @@ def main():
     print(bst.exists(19))
 
 main()
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ef366db389b92e8f733fee18427a849eaf5e6518
