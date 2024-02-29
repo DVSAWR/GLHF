@@ -173,7 +173,3 @@ myobject = MyClass(3.239)
 print(myobject.num)
 print(myobject.__trunc__)
 print(myobject.__trunc__())
-
-
-preview('__ceil__()')
-#
