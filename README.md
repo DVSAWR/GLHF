@@ -7,5 +7,12 @@
 
 
 
+## Сайты с задачами
+[coderun.yeandex.ru](coderun.yeandex.ru)
+[leetcode.com](leetcode.com)
+[codeforces.com](codeforces.com)
 
 
+
+## Книги
+"Алгоритмы: построение и анализ" Томас Кормен
