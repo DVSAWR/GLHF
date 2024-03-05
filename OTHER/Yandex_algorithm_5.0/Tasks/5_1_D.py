@@ -446,12 +446,12 @@ print('\n\n\n-------list of dicts??------')
 
 BOARD = []
 
-# vstr = input()[0:8], input()[0:8], input()[0:8] + input()[0:8] + input()[0:8] + input()[0:8] + input()[0:8] + input()[0:8]
+# vline = input()[0:8], input()[0:8], input()[0:8] + input()[0:8] + input()[0:8] + input()[0:8] + input()[0:8] + input()[0:8]
 # print(strinp)
 vline = ('********',
-         '********',
          '*R******',
          '********',
+         '*****B**',
          '********',
          '********',
          '********',
@@ -464,20 +464,256 @@ for i in vline:
 
 print(BOARD)
 
+
 def show_board():
-    print('list of dicts')
+    print('\nlist of dicts')
     for l, d in enumerate(BOARD):
         print(f'line {l}: {d}')
 
 
 show_board()
 
+print('\n----directions of R B-----')
 
-
-print('\n----directions of R-----')
+position_lst = [i for i in range(8)]
+rposition_lst = position_lst.copy()
+rposition_lst.reverse()
 
 for l, d in enumerate(BOARD):
     for k, v in d.items():
         if v == 'R':
+
+            left = position_lst[:k]
+            right = position_lst[k + 1:]
+            top = position_lst[:l]
+            bottom = position_lst[l + 1:]
+
+            left.reverse()
+            top.reverse()
+
+            if len(left) != 0:
+                for q in left:
+                    if d[q] == 'R' or d[q] == 'B':
+                        break
+                    else:
+                        d[q] = '■'
+
+            if len(right) != 0:
+                for q in right:
+                    if d[q] == 'R' or d[q] == 'B':
+                        break
+                    else:
+                        d[q] = '■'
+
+            if len(top) != 0:
+                for q in top:
+                    if BOARD[q][k] == 'R' or BOARD[q][k] == 'B':
+                        break
+                    else:
+                        BOARD[q][k] = '■'
+
+            if len(bottom) != 0:
+                for q in bottom:
+                    if BOARD[q][k] == 'R' or BOARD[q][k] == 'B':
+                        break
+                    else:
+                        BOARD[q][k] = '■'
+
+        if v == 'B':
             print(f'line: {l} key: {k} value: {v}')
-        
+
+            print(position_lst)
+            print(rposition_lst)
+            lefttop = []
+            leftbottom = []
+            righttop = []
+            rightbottom = []
+
+            if k != 0 and l != 0:
+                lefttop = [[z, x] for z, x in zip(rposition_lst[-l:], rposition_lst[-k:])]
+
+            print('\n')
+            print('LEFTTOPO')
+            print(rposition_lst[-l:])
+            print(rposition_lst[-k:])
+            print(lefttop)
+
+            if k != 0:
+                leftbottom = [[z, x] for z, x in zip(position_lst[l + 1:], rposition_lst[-k:])]
+
+            print('\n')
+            print('LEFTBOTO')
+            print(position_lst[l + 1:])
+            print(rposition_lst[-k:])
+            print(leftbottom)
+            print('\n')
+
+            if l != 0:
+                righttop = [[z, x] for z, x in zip(rposition_lst[-l:], position_lst[k + 1:])]
+
+            print('\nRIGHTTOPO')
+            print(rposition_lst[-l:])
+            print(position_lst[k + 1:])
+
+            print(righttop)
+
+            rightbottom = [[z, x] for z, x in zip(position_lst[l + 1:], position_lst[k + 1:])]
+
+            print('\nRIGHTBOTTOM')
+            print(position_lst[l + 1:])
+            print(position_lst[k + 1:])
+
+            print(rightbottom)
+
+            if len(lefttop) != 0:
+                for q in lefttop:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+            if len(leftbottom) != 0:
+                for q in leftbottom:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+            if len(righttop) != 0:
+                for q in righttop:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+            if len(rightbottom) != 0:
+                for q in rightbottom:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+show_board()
+
+print('\n\n')
+
+empty_cells = 0
+
+for d in BOARD:
+    for k, v in d.items():
+        if v == '*':
+            empty_cells += 1
+
+print(empty_cells)
+
+print('\n')
+print('\n')
+print('------DONE------')
+print('\n')
+print('INPUT DATA:', end='\n')
+
+vline = input()[0:8], input()[0:8], input()[0:8], input()[0:8], input()[0:8], input()[0:8], input()[0:8], input()[0:8]
+
+BOARD = []
+
+for i in vline:
+    BOARD.append({k: v for k, v in zip(range(len(i)), i)})
+
+position_lst = [i for i in range(8)]
+rposition_lst = position_lst.copy()
+rposition_lst.reverse()
+
+for l, d in enumerate(BOARD):
+    for k, v in d.items():
+        if v == 'R':
+
+            left = position_lst[:k]
+            right = position_lst[k + 1:]
+            top = position_lst[:l]
+            bottom = position_lst[l + 1:]
+
+            left.reverse()
+            top.reverse()
+
+            if len(left) != 0:
+                for q in left:
+                    if d[q] == 'R' or d[q] == 'B':
+                        break
+                    else:
+                        d[q] = '■'
+
+            if len(right) != 0:
+                for q in right:
+                    if d[q] == 'R' or d[q] == 'B':
+                        break
+                    else:
+                        d[q] = '■'
+
+            if len(top) != 0:
+                for q in top:
+                    if BOARD[q][k] == 'R' or BOARD[q][k] == 'B':
+                        break
+                    else:
+                        BOARD[q][k] = '■'
+
+            if len(bottom) != 0:
+                for q in bottom:
+                    if BOARD[q][k] == 'R' or BOARD[q][k] == 'B':
+                        break
+                    else:
+                        BOARD[q][k] = '■'
+
+        if v == 'B':
+
+            lefttop = []
+            leftbottom = []
+            righttop = []
+            rightbottom = []
+
+            if k != 0 and l != 0:
+                lefttop = [[z, x] for z, x in zip(rposition_lst[-l:], rposition_lst[-k:])]
+
+            if k != 0:
+                leftbottom = [[z, x] for z, x in zip(position_lst[l + 1:], rposition_lst[-k:])]
+
+            if l != 0:
+                righttop = [[z, x] for z, x in zip(rposition_lst[-l:], position_lst[k + 1:])]
+
+            rightbottom = [[z, x] for z, x in zip(position_lst[l + 1:], position_lst[k + 1:])]
+
+            if len(lefttop) != 0:
+                for q in lefttop:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+            if len(leftbottom) != 0:
+                for q in leftbottom:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+            if len(righttop) != 0:
+                for q in righttop:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+            if len(rightbottom) != 0:
+                for q in rightbottom:
+                    if BOARD[q[0]][q[1]] == 'R' or BOARD[q[0]][q[1]] == 'B':
+                        break
+                    else:
+                        BOARD[q[0]][q[1]] = '■'
+
+empty_cells = 0
+
+for d in BOARD:
+    for k, v in d.items():
+        if v == '*':
+            empty_cells += 1
+
+print(empty_cells)
