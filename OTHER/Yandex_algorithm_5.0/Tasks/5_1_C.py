@@ -82,3 +82,70 @@ i
  нажатий или меньше.
 
 '''
+
+
+def button_count(x):
+    count = 0
+    if x == 0:
+        return count
+    else:
+        tab = x // 4
+        count += tab
+
+        if x % 4 == 0:
+            return count
+        elif x % 4 == 1:
+            return count + 1
+        else:
+            return count + 2
+
+
+print('-----')
+
+line_num = 5
+# lst = []
+#
+# for i in range(5):
+#     lst.append(int(input('NUM: ')))
+#
+# print(lst)
+
+lst = [1, 4, 12, 9, 0]
+# 1 4 12 9 0
+for i in lst:
+    print(f'FOR NUM: {i} > FROM FUNC button_count(x) > {button_count(i)}')
+
+ans = 0
+for i in lst:
+    ans += button_count(i)
+
+print(f'{'\t' * 9}SUM: {ans}')
+
+print('----DONE----')
+
+
+def button_count_in_line(x):
+    count = 0
+    if x == 0:
+        return count
+    else:
+        tab = x // 4
+        count += tab
+
+        if x % 4 == 0:
+            return count
+        elif x % 4 == 1:
+            return count + 1
+        else:
+            return count + 2
+
+
+lines = int(input())
+
+buttons = 0
+
+for i in range(lines):
+    buttons = buttons + button_count_in_line(int(input()))
+
+print(buttons)
+
