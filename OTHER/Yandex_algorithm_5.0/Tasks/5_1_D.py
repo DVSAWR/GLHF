@@ -717,3 +717,5 @@ for d in BOARD:
             empty_cells += 1
 
 print(empty_cells)
+
+
