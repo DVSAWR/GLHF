@@ -1,5 +1,10 @@
 '''
 
+E. Прибыльный стартап
+Ограничение времени	1 секунда
+Ограничение памяти	256Mb
+Ввод	стандартный ввод или input.txt
+Вывод	стандартный вывод или output.txt
 k
  друзей организовали стартап по производству укулеле для кошек. На сегодняшний день прибыль составила
 n
@@ -71,95 +76,99 @@ k
 Ввод	Вывод
 21 108 1
 216
-Пример 2
-Ввод	Вывод
-5 12 4
--1
 
 '''
 
-print('--------try understand the task...------')
-
-n = '21'  # изначальная прибыль
-k = '108'  # количество челов
-d = '1'  # дни слежки
-
-x = 216
-
-# РЕШЕНИЕ
-# 108*i = 21_
-# 108 * 2 = 216
-
-# РЕШЕНИЕ
-# n + i % k
-
-for i in range(10):
-    if int(n + str(i)) % int(k) == 0:
-        print(i)
-
-for i in range(10):
-    if int(n + str(i)) % int(k) == 0:
-        n + str(i)
-
-for day in range(int(d)):
-    for i in range(10):
-        if int(n + str(i)) % int(k) == 0:
-            n += str(i)
-
-print(n)
-
-# TEST:
-# 21 108 1 = 216
-# 5 12 4 = -1
-# 1 1 1 = 19
-# 2 1 3 = 2900
+# 3
+# 5 7 2
+# x+
 
 
-print('------')
+# 2
+# 4 -5
+# +
 
-# n = '21'  # изначальная прибыль
-# k = 108  # количество челов
-# d = 3  # дни слежки
+# TEST
+# 100000
+# 000..0011...111
 
-# x = 216
+
+length = 3
+nums = [5, 7, 2]
+
+# ANSWER НЕЧЕТНОЕ ЧИСЛО
+
+lenght = 3
+d = {k: v for k, v in zip(range(lenght), nums)}
+
+print(lenght)
+print(d)
+
+answer = ''
+
+for k, v in d.items():
+    if v % 2:
+        pass
 
 
 
-n, k, d = '5', 12, 4
 
-# n, k, d = input(), int(input()), int(input())
 
-pre_n = n
+print('\n-------------------------')
 
-if k == 1:
-    n += '9'
-    d -= 1
+length = 3
+nums = '5 0 2'
 
-for day in range(d):
-    for i in range(11):
-        if i == 10:
-            break
+x, z = nums[-3:].split()
 
-        if int(n + str(i)) % int(k) == 0:
-            # print(f'NUMS: {n, i}')
-            n += str(i)
-            break
+x = int(x)
+z = int(z)
 
-if n != pre_n:
-    print(n)
+asnwer = ''
+
+print(nums)
+print('LAST 2 NUMBERS', x, z)
+
+
+if (x * z) % 2 == 0:
+    print('\nx')
+    print(f'EVEN > {x * z}')
+if (x + z) % 2 != 0:
+    print('\n+')
+    print(f'ODD > {x + z}')
+
+
+print('-------------------------')
+
+n = 3
+nums = '5 7 2'  #  2'
+
+n = 2
+nums = '4 -5'
+
+asnwer = ''
+
+if n == 2:
+    q, w = map(int, nums.split())
+    print(q, w)
+    print(type(q), type(w))
+
+    if (q * w) % 2 != 0:
+        print(f'\n(q * w) % 2 = {(q * w) % 2}')
+        print('\nx')
+        print(f'EVEN > {x * z}')
+        answer += '*'
+
+    if (q + w) % 2 != 0:
+        print(f'(q + w) % 2 = {(q + w) % 2}')
+        print('\n+')
+        print(f'ODD > {x + z}')
+        answer += '+'
+
+    print('\nANSWER:', answer)
+
 else:
-    print(-1)
-
-
-print('---need min complexity----')
-
-# TEST:
-# 21 108 1 = 216
-# 5 12 4 = -1
-# 1 1 1 = 19
-# 2 1 3 = 2900
-
-# РЕШЕНИЕ
-# n + i % k
-
+    q, w, e = map(int, nums[-5:].split())
+    print(q, w, e)
+    print(type(q), type(w), type(e))
 
