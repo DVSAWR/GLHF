@@ -26,4 +26,3 @@ print(di, '\n')
 
 for i in di:
     print(f'| {i} | {di[i]} |')
-
