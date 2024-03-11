@@ -608,8 +608,11 @@ print(f'X % 2 == 0: {x % 2 == 0}')
 
 print('\n\n\n--------DONE SEREJA--------\n')
 
-n = 6
-nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
+# n = 6
+# nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
+
+n = 3
+nums = '5 7 2'
 
 d = list(map(int, nums.split()))
 
@@ -626,24 +629,102 @@ for i in d:
         first_odd_index = d.index(i)
         break
 
+
+print(f'first_odd_index {first_odd_index} : {d[first_odd_index]}')
+
 # 4 типа условвий - сережа
 
+answer += 'x' * first_odd_index
 
-for i in range(n - 1):
+print(answer)
+print(d[first_odd_index:])
 
-    if int(d[i]) % 2 == 0 and int(d[i + 1]) % 2 == 0:
-        answer += '+'
 
-    if int(d[i]) % 2 == 0 and int(d[i + 1]) % 2 != 0:
-        answer += 'x'
+print(range(first_odd_index, n - 1))
+for i in range(first_odd_index, n - 1):
 
     if int(d[i]) % 2 != 0 and int(d[i + 1]) % 2 == 0:
-        answer += 'x'
+        answer += '+'
 
     if int(d[i]) % 2 != 0 and int(d[i + 1]) % 2 != 0:
         answer += 'x'
 
+    if int(d[i]) % 2 == 0 and int(d[i + 1]) % 2 == 0:
+        answer += 'x'
+
+    if int(d[i]) % 2 == 0 and int(d[i + 1]) % 2 != 0:
+        answer += 'x'
 
 
 
+
+print(answer)
+
+
+
+print('\n\n\n-------DONE??? -------\n')
+
+
+
+
+# n = 6
+# nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
+#
+# n = 3
+# nums = '5 7 2'
+# #
+# n = 2
+# nums = '4 -5'
+
+n = 3
+nums = '390029247 153996608 -918017777'
+
+
+d = list(map(int, nums.split()))
+print(d)
+
+answer = ''
+
+for i in range(n - 1):
+
+    x = d[i]
+    y = d[i + 1]
+
+    print(f'i === {i}')
+
+    if x == 0:
+        print('> if x == 0:')
+        answer += '+'
+
+    elif x % 2 == 0 and y % 2 == 0:
+        print('> elif x % 2 == 0 and y % 2 == 0:')
+        answer += 'x'
+
+    elif x % 2 != 0 and y % 2 != 0:
+        print('> elif x % 2 != 0 and y % 2 != 0:')
+        answer += 'x'
+
+    elif x % 2 != 0 and y % 2 == 0 or x % 2 == 0 and y % 2 != 0:
+        pass
+
+
+
+print(answer)
+
+
+# for i in range(n - 1):
+#
+#     x = d[i]
+#     y = d[i + 1]
+#
+#     if x == 0:
+#         answer += '+'
+#     elif x % 2 == 0 and y % 2 == 0:
+#         answer += 'x'
+#     elif x % 2 != 0 and y % 2 != 0:
+#         answer += 'x'
+#     else:
+#         answer += '+'
+#
+# print(answer)
 
