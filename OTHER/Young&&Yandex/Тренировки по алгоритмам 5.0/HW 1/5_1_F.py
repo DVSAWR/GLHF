@@ -728,3 +728,104 @@ print(answer)
 #
 # print(answer)
 
+
+print('\n\n\n-----------0-qpwoefgjwoeipjgoplejnrghblk------------')
+
+# n = int(input())
+# nums = input()
+
+# n = 6
+# nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
+#
+# n = 3
+# nums = '5 7 2'
+# #
+# n = 2
+# nums = '4 -5'
+
+n = 3
+nums = '390029247 153996608 -918017777'
+
+
+d = nums.split()
+
+
+print(d)
+
+answer = ''
+x = int(d[0])
+
+
+if 0 in d and n > 10:
+    answer = 'x' * (n - 4)
+    x = 0
+    for v in d[-3:]:
+        if (x + v) % 2 != 0:
+            x = x + v
+            answer += '+'
+        elif (x * v) % 2 != 0:
+            x = x * v
+            answer += 'x'
+        else:
+            x = x + v
+            answer += '+'
+else:
+    for v in d:
+        if v == d[0]:
+            continue
+        else:
+            plus = int(x) + int(v)
+            multi = int(x) * int(v)
+
+            if plus % 2 != 0:
+                x = plus
+                answer += '+'
+            elif multi % 2 != 0:
+                x = multi
+                answer += 'x'
+            else:
+                x = plus
+                answer += '+'
+
+print(answer)
+
+
+print('\n\n\n\n\n---------------QWE----------\n')
+
+
+# n = 6
+# nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
+#
+# n = 3
+# nums = '5 7 2'
+#
+# n = 2
+# nums = '4 -5'
+
+n = 3
+nums = '390029247 153996608 -918017777'
+
+
+
+d = list(map(int, nums.split()))
+
+print(d)
+
+answer = ''
+
+
+first_odd_index = None
+
+for i in d:
+    if i % 2 != 0:
+        first_odd_index = d.index(i)
+        break
+
+print(first_odd_index, ':', d[first_odd_index])
+
+
+
+
+
+
+print(answer)
