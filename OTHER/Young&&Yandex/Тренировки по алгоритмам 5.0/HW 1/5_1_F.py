@@ -557,9 +557,7 @@ print('\n\n\n------DONE ??-------\n')
 n = 112
 nums = '934413450 -957753032 -47996878 416963766 -911982310 -911110608 -506958757 144074642 680827101 -203188344 370782033 203626375 -963004384 -782912288 -362998804 913080090 717297523 889618066 -952404592 659199761 123018664 190298102 466641860 -710892072 106944290 718271672 238101965 -506446387 144992919 340919771 -607194303 -849854995 174453227 -788028891 987623482 -740917081 -512465139 -573842122 628763678 892240457 -88835707 -932127010 341619016 443013869 576518596 -929158501 397581843 559477394 -63383506 -13234087 217255607 -731650428 -148157818 846356438 820352024 386771993 126149197 644853997 952655327 -919501547 -430096983 783064729 -979559563 61805723 -518285156 837041870 296623772 128773805 192908639 29651375 457806699 -807413503 110710563 -262266466 -292405344 -145309950 492234193 395554889 889060554 549771258 214597171 247791141 -454818660 197837624 -25719589 577227831 661150092 -223829760 788086687 287607645 860594023 -114426162 823950382 258236252 -463823516 -481873994 382852191 -278533194 662881919 -667438613 -178064504 -80324364 -17104160 186709960 192598029 544650360 -264911894 -198312419 766162381 -452340259 -943035273 -881429417'
 
-
 d = list(map(int, nums.split()))
-
 
 print(d)
 
@@ -597,14 +595,11 @@ for v in new_d:
             x = x + v
             answer += '+'
 
-
-
 print('\n\nANSWER:', answer)
 print(n)
 print(f'ANSWER LEN {len(answer)}')
 print(f'\nX: {x}')
 print(f'X % 2 == 0: {x % 2 == 0}')
-
 
 print('\n\n\n--------DONE SEREJA--------\n')
 
@@ -629,7 +624,6 @@ for i in d:
         first_odd_index = d.index(i)
         break
 
-
 print(f'first_odd_index {first_odd_index} : {d[first_odd_index]}')
 
 # 4 типа условвий - сережа
@@ -638,7 +632,6 @@ answer += 'x' * first_odd_index
 
 print(answer)
 print(d[first_odd_index:])
-
 
 print(range(first_odd_index, n - 1))
 for i in range(first_odd_index, n - 1):
@@ -655,17 +648,9 @@ for i in range(first_odd_index, n - 1):
     if int(d[i]) % 2 == 0 and int(d[i + 1]) % 2 != 0:
         answer += 'x'
 
-
-
-
 print(answer)
 
-
-
 print('\n\n\n-------DONE??? -------\n')
-
-
-
 
 # n = 6
 # nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
@@ -678,7 +663,6 @@ print('\n\n\n-------DONE??? -------\n')
 
 n = 3
 nums = '390029247 153996608 -918017777'
-
 
 d = list(map(int, nums.split()))
 print(d)
@@ -707,10 +691,7 @@ for i in range(n - 1):
     elif x % 2 != 0 and y % 2 == 0 or x % 2 == 0 and y % 2 != 0:
         pass
 
-
-
 print(answer)
-
 
 # for i in range(n - 1):
 #
@@ -746,15 +727,12 @@ print('\n\n\n-----------0-qpwoefgjwoeipjgoplejnrghblk------------')
 n = 3
 nums = '390029247 153996608 -918017777'
 
-
 d = nums.split()
-
 
 print(d)
 
 answer = ''
 x = int(d[0])
-
 
 if 0 in d and n > 10:
     answer = 'x' * (n - 4)
@@ -789,9 +767,7 @@ else:
 
 print(answer)
 
-
 print('\n\n\n\n\n---------------QWE----------\n')
-
 
 # n = 6
 # nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
@@ -805,14 +781,11 @@ print('\n\n\n\n\n---------------QWE----------\n')
 n = 3
 nums = '390029247 153996608 -918017777'
 
-
-
 d = list(map(int, nums.split()))
 
 print(d)
 
 answer = ''
-
 
 first_odd_index = None
 
@@ -823,9 +796,150 @@ for i in d:
 
 print(first_odd_index, ':', d[first_odd_index])
 
-
-
-
-
-
 print(answer)
+
+print('\n\n\n------------------XXXXXXXXXX----------------\n')
+
+# n = 6
+# nums = '-76959846 -779700294 380306679 -340361999 58979764 -392237502'
+
+# n = 3
+# nums = '5 7 2'
+#
+# n = 2
+# nums = '4 -5'
+
+# n = 3
+# nums = '390029247 153996608 -918017777'
+
+# n = 7
+# nums = '7 3 2 4 8 5 3'
+
+# n = 5
+# nums = '2 4 6 8 3'
+
+n = 5
+nums = '450402558 -840167367 -231820501 586187125 -627664645'
+
+# n = 6
+# nums = '2 4 2 1 2 1'
+
+d = list(map(int, nums.split()))
+print(d)
+
+answer = ''
+
+odd_count = d[0] % 2
+print(odd_count)
+
+# for i in d:
+#     if i % 2 != 0:
+#         first_odd_index = d.index(i)
+#         break
+#
+# print(f'\nfirst_odd_index: {first_odd_index}  >  d[{first_odd_index}]: {d[first_odd_index]}\n')
+
+for i in range(n - 1):
+
+    if d[i] % 2 == 0:  # EVEN
+        print(f'{d[i]} EVEN >')
+        if d[i + 1] % 2 == 0:
+            print(f'> {d[i]} > {d[i + 1]} NEXT EVEN >')
+            answer += 'x'
+
+        if d[i + 1] % 2 != 0:
+            print(f'> {d[i]} > {d[i + 1]} NEXT ODD >')
+            answer += '+'
+            odd_count += 1
+
+
+    elif d[i] % 2 != 0:  # ODD
+        print(f'{d[i]} ODD >')
+        if d[i + 1] % 2 == 0:
+            print(f'> {d[i]} > {d[i + 1]} NEXT EVEN >')
+            answer += '+'
+
+        if d[i + 1] % 2 != 0:
+            print(f'{d[i]} > {d[i + 1]} NEXT ODD >')
+            answer += 'x'
+
+print(f'\nANSWER: \t{answer}')
+print(f'ODD COUNT: \t{odd_count}')
+
+print('\nIF ANSWER:')
+
+if odd_count % 2 != 0:
+    print(answer)
+else:
+    char_index = answer.find('+')
+    final_answer = answer[:char_index] + 'x' + answer[char_index + 1:]
+    print(final_answer)
+
+
+
+print('\n--TEST--')
+
+if odd_count % 2 != 0:
+    y = list(answer)
+else:
+    y = list(final_answer)
+
+for i in range(len(y)):
+    if y[i] == 'x':
+        y[i] = '*'
+print(y)
+
+x = list(nums.split())
+print(x)
+qwe = []
+
+for i in range(len(y)):
+    qwe.append(x[i])
+    qwe.append(y[i])
+
+qwe.append(x[len(x) - 1])
+print(qwe)
+
+ans = ''
+
+for i in qwe:
+    ans += i
+
+print(ans)
+
+print('\n')
+print(exec(f'print({ans})\n'
+           f'x = {ans}\n'
+           f'print("ODD:", end=" ")\n'
+           f'print(x % 2 != 0)'))
+
+
+print('-------DONE----------')
+
+n = int(input())
+nums = input()
+
+d = list(map(int, nums.split()))
+answer = ''
+odd_count = d[0] % 2
+
+for i in range(n - 1):
+    if d[i] % 2 == 0:  # EVEN
+        if d[i + 1] % 2 == 0:
+            answer += 'x'
+        if d[i + 1] % 2 != 0:
+            answer += '+'
+            odd_count += 1
+    elif d[i] % 2 != 0:  # ODD
+        if d[i + 1] % 2 == 0:
+            answer += '+'
+
+        if d[i + 1] % 2 != 0:
+            answer += 'x'
+
+if odd_count % 2 != 0:
+    print(answer)
+else:
+    char_index = answer.find('+')
+    final_answer = answer[:char_index] + 'x' + answer[char_index + 1:]
+    print(final_answer)
