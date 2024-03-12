@@ -719,3 +719,8 @@ for d in BOARD:
 print(empty_cells)
 
 
+print('\n\n------YANDEX--------')
+
+pass
+
+

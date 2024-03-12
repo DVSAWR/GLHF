@@ -119,7 +119,7 @@ ans = 0
 for i in lst:
     ans += button_count(i)
 
-print(f'{'\t' * 9}SUM: {ans}')
+
 
 print('----DONE----')
 
@@ -131,7 +131,6 @@ def button_count_in_line(x):
     else:
         tab = x // 4
         count += tab
-
         if x % 4 == 0:
             return count
         elif x % 4 == 1:
@@ -141,11 +140,23 @@ def button_count_in_line(x):
 
 
 lines = int(input())
-
 buttons = 0
-
 for i in range(lines):
     buttons = buttons + button_count_in_line(int(input()))
-
 print(buttons)
 
+
+print('\n\n------YANDEX--------')
+
+n = int(input())
+ans = 0
+
+for i in range(n):
+    a = int(input())
+    ans += a // 4
+    if a % 4 == 1 or a % 4 == 2:
+        ans += a % 4
+    if a % 4 == 3:
+        ans += 2
+
+print(ans)

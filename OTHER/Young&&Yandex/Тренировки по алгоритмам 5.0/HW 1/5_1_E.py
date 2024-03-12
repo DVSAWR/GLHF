@@ -269,3 +269,32 @@ x = "294209208000000000000000000000000000000000000000000000000000000000000000000
 print(x)
 print(len(x))
 print(len(x) - len(str(29420920 + 2)))
+
+
+print('\n\n------YANDEX--------')
+
+n, k, d = '29420920', 98069736, 69929
+# n, k, d = input().split()
+
+n = int(n)
+k = int(k)
+d = int(d)
+
+nowmod = n % k
+ans = [n]
+flag = True
+
+for i in range(d):
+    for newdigit in range(10):
+        newmod = (nowmod * 10 + newdigit) % k
+        if newmod == 0:
+            ans.append(newdigit)
+            nowmod = newmod
+            break
+    else:
+        flag = True
+
+if flag:
+    print(''.join(map(str, ans)))
+else:
+    print(-1)
