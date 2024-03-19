@@ -228,11 +228,11 @@ right = []
 nleft = 0
 nright = 0
 
-
 for i in range(n):
     position = i + 1
     b, d = map(int, input().split())
     value = b - d
+
     if value > 0:
         left.append((position, b, d, value))
         nleft += 1
@@ -241,17 +241,41 @@ for i in range(n):
         right.append((position, b, d, value))
         nright += 1
 
-# n = 7
-# left = [(2, 822889311, 446755913, 376133398), (4, 480845266, 448565595, 32279671), (7, 715477619, 181424399, 534053220)]
-# right = [(1, 160714711, 449656269, -288941558), (3, 135599877, 389312924, -253713047), (5, 561330066, 605997004, -44666938), (6, 61020590, 573085537, -512064947)]
-
-
 print('LEFT:\n', left)
 print(f'LEN: {nleft}')
 print('RIGHT:\n', right)
 print(f'LEN: {nright}')
 
-sorted_left = sorted(left, key=lambda item: item[3], reverse=True)
+# max_berry_count = 0
+# max_berry_value_count = None
+# max_berry_index = None
+# max_berry = None
+#
+#
+# if n > 2:
+#     for i in range(nleft):
+#         if left[i][1] > max_berry_count:
+#             max_berry_count = left[i][1]
+#             max_berry_value_count = left[i][3]
+#             max_berry_index = i
+#             max_berry = left[i]
+#         if left[i][1] == max_berry_count and left[i][3] < max_berry_value_count:
+#             max_berry_count = left[i][1]
+#             max_berry_value_count = left[i][3]
+#             max_berry_index = i
+#             max_berry = left[i]
+#
+#             print(max_berry_count, max_berry_index, max_berry)
+#
+#
+#
+#     left.pop(max_berry_index)
+
+
+sorted_left = sorted(left, key=lambda item: item[2])
+
+# sorted_left.append(max_berry)
+
 sorted_right = sorted(right, key=lambda item: item[1], reverse=True)
 
 print(f'\nSORTED LEFT:\n{sorted_left}\n\nSORTED RIGHT:\n{sorted_right}')
@@ -265,6 +289,9 @@ for i in range(nleft):
     if current_position > maximum_position:
         maximum_position = current_position
     current_position -= sorted_left[i][2]
+
+    print(f'>>> {maximum_position} >>current>> {current_position}')
+
     berry_seq.append(sorted_left[i][0])
 
 if nright != 0:
@@ -279,6 +306,53 @@ print(berry_seq)
 
 print('\n-------TEST--------\n')
 
+print(maximum_position)
+print(' '.join(map(str, berry_seq)))
+
+# TEST
+# 23
+# 91410744 246645879
+# 548005576 229486358
+# 803980871 224901874
+# 861095072 316710734
+# 361173233 431221412
+# 795325398 708524470
+# 865945442 510337292
+# 391169760 344881060
+# 474897219 313809702
+# 818736355 143887114
+# 867977435 395940406
+# 989222712 955828702
+# 898378286 630958529
+# 448454752 323222515
+# 297984506 102934274
+# 241509680 729781601
+# 799060848 747512043
+# 821796166 704644716
+# 723296526 405421751
+# 672438788 284229429
+# 707052188 580762090
+# 310653206 92689764
+# 647773264 1886864
+
+# 277086265512
+# 2 3 4 6 7 8 9 10...
+# 12
+
+
+# 6
+# 822889311 446755913
+# 715477619 181424399
+# 61020590 573085537
+# 480845266 448565595
+# 135599877 389312924
+# 160714711 449656269
+#
+# 1391031884
+# 1 2 4 3 5 6
+
+
+print('-------DONE------')
 
 n = int(input())
 
@@ -292,6 +366,7 @@ for i in range(n):
     position = i + 1
     b, d = map(int, input().split())
     value = b - d
+
     if value > 0:
         left.append((position, b, d, value))
         nleft += 1
@@ -300,7 +375,8 @@ for i in range(n):
         right.append((position, b, d, value))
         nright += 1
 
-sorted_left = sorted(left, key=lambda item: item[3], reverse=True)
+sorted_left = sorted(left, key=lambda item: item[2])
+
 sorted_right = sorted(right, key=lambda item: item[1], reverse=True)
 
 maximum_position = 0
@@ -323,8 +399,3 @@ if nright != 0:
 
 print(maximum_position)
 print(' '.join(map(str, berry_seq)))
-
-
-
-# TEST
-

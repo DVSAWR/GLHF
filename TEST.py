@@ -44,3 +44,14 @@ print('\n')
 #     print(lst[i][3])
 #     smth += lst[i][3]
 #     print(smth + lst[i + 1][1])
+
+
+lst = [str(i) + 'q' for i in range(10)]
+print(lst)
+
+for i in lst:
+    if i == '8q':
+        print('FIND')
+
+lst.pop(8)
+print(lst)
