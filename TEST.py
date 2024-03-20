@@ -55,3 +55,15 @@ for i in lst:
 
 lst.pop(8)
 print(lst)
+
+print(tuple(range(1, 4)))
+
+
+n = 5
+mystr = '5 4 3 2 1'
+
+d = {k: v for k, v in zip(range(n), mystr.split())}
+print(d)
+
+print(d[1])
+print(d[-1])
