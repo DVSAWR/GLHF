@@ -154,6 +154,7 @@ a, b, k = 391, 901, 26
 
 spin_power = tuple(range(a, b + 1))
 
+
 print('SECTORS:', sectors)
 print('')
 print(spin_power)
@@ -241,33 +242,33 @@ print('\nC++')
 #   return 0;
 # }
 
-print('\nconvert C++')
-
-import sys
-
-n = 34
-win = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325, 57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
-minSpeed, maxSpeed, speedDec = 391, 901, 26
-
-minShift = (minSpeed - 1) // speedDec
-toVisit = min(n, (maxSpeed - 1) // speedDec + 1 - minShift)
-
-assert toVisit > 0
-
-max_val = 0
-
-for di in [-1, 1]:
-    pos = di * minShift
-    pos %= n
-    pos += n
-    pos %= n
-    max_val = max(max_val, win[pos])
-    for i in range(toVisit):
-        pos += di
-        pos %= n
-        pos += n
-        pos %= n
-
-assert max_val > 0
-print(max_val)
+# print('\nconvert C++')
+#
+# import sys
+#
+# n = 34
+# win = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325, 57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
+# minSpeed, maxSpeed, speedDec = 391, 901, 26
+#
+# minShift = (minSpeed - 1) // speedDec
+# toVisit = min(n, (maxSpeed - 1) // speedDec + 1 - minShift)
+#
+# assert toVisit > 0
+#
+# max_val = 0
+#
+# for di in [-1, 1]:
+#     pos = di * minShift
+#     pos %= n
+#     pos += n
+#     pos %= n
+#     max_val = max(max_val, win[pos])
+#     for i in range(toVisit):
+#         pos += di
+#         pos %= n
+#         pos += n
+#         pos %= n
+#
+# assert max_val > 0
+# print(max_val)
 
