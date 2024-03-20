@@ -82,3 +82,17 @@ for i in coords:
         maxy = i[1]
 
 print(minx, miny, maxx, maxy)
+
+
+print('---yandex----')
+
+k = int(input())
+minx, miny = map(int, input().split())
+maxx, maxy = minx, miny
+for i in range(k - 1):
+    x, y = map(int, input().split())
+    minx = min(minx, x)
+    maxx = max(maxx, x)
+    miny = min(miny, y)
+    maxy = max(maxy, y)
+print(minx, miny, maxx, maxy)

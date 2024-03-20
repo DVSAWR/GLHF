@@ -124,3 +124,17 @@ for line in board:
             cells_count += v
 
 print(cells_count)
+
+print('-----yandex-------')
+
+n = int(input())
+field = [[0] * 10 for _ in range(10)]
+for _ in range(n):
+    i, j = map(int, input().split())
+    field[i][j] = 1
+ans = 0
+for i in range(1, 10):
+    for j in range(1, 10):
+        ans += field[i][j - 1] != field[i][j]
+        ans += field[i - 1][j] != field[i][j]
+print(ans)

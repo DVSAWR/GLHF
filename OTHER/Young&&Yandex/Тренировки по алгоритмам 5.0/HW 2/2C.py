@@ -87,3 +87,15 @@ else:
     print(sum_ropes)
 
 
+print('----yandex-----')
+
+n = int(input())
+a = list(map(int, input().split()))
+suma = sum(a)
+maxa = max(a)
+if maxa * 2 > suma:
+    print(maxa * 2 - suma)
+else:
+    print(suma)
+
+
