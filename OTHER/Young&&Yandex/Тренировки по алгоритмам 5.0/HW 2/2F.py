@@ -68,12 +68,11 @@ print('\n---------------so---------------\n')
 # a, b, k = 2, 5, 2
 
 n = 34
-sectors = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325, 57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
+sectors = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325,
+           57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
 a, b, k = 391, 901, 26
 
-
 spin_power = tuple(range(a, b + 1))
-
 
 print(sectors)
 print(spin_power)
@@ -126,18 +125,14 @@ for i in spin_power:
         elif max_sector > max_value:
             max_value = max_sector
 
-
 print('\nANSWER:', max_value)
-
-
 
 print('\n-------????-------')
 
-
 n = 34
-sectors = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325, 57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
+sectors = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325,
+           57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
 a, b, k = 391, 901, 26
-
 
 # n = 5
 # sectors = [1, 2, 3, 4, 5]
@@ -154,7 +149,6 @@ a, b, k = 391, 901, 26
 
 spin_power = tuple(range(a, b + 1))
 
-
 print('SECTORS:', sectors)
 print('')
 print(spin_power)
@@ -163,7 +157,6 @@ print('')
 max_sector = max(sectors)
 
 spin_power_2 = [0]
-
 
 for i in spin_power:
     if i % 2 != 0:
@@ -197,78 +190,25 @@ for i in spin_power:
 
         spin_power_2.append(max_value)
 
-
 print(spin_power_2)
-
 
 print('')
 print(max(spin_power_2))
 
+print('------yandex-------')
 
-print('\nC++')
-# #include <cstdio>
-# #include <vector>
-# #include <algorithm>
-# #include <cassert>
-#
-# int main(){
-#   int n;
-#   scanf("%d", &n);
-#   std::vector<int> win(n);
-#   for (int i = 0; i < n; i++) {
-#       scanf("%d", &win[i]);
-#   }
-#   int minSpeed, maxSpeed, speedDec;
-#   scanf("%d %d %d", &minSpeed, &maxSpeed, &speedDec);
-#   int minShift = (minSpeede - 1) / speedDec;
-#   int toVisit = std::min(n, (maxSpeed - 1) / speedDec + 1 - minShift);
-#   assert(toVisit > 0);
-#   int max = 0;
-#   for (int di = -1; di <= 1; di += 2) {
-#       int pos = di * minShift;
-#       pos %= n;
-#       pos += n;
-#       pos %= n;
-#       max = std::max(max, win[pos]);
-#       for (int i = 0; i < toVisit; i++){
-#           pos += di;
-#           pos %= n;
-#           pos += n;
-#           pos %= n;
-#       }
-#   }
-#   asert(max > 0);
-#   printf("%d", max)
-#   return 0;
-# }
-
-# print('\nconvert C++')
-#
-# import sys
-#
-# n = 34
-# win = [56, 1000, 528, 720, 895, 209, 805, 65, 370, 923, 541, 431, 528, 778, 670, 761, 794, 49, 488, 171, 438, 325, 57, 717, 293, 847, 535, 306, 398, 757, 888, 56, 916, 999]
-# minSpeed, maxSpeed, speedDec = 391, 901, 26
-#
-# minShift = (minSpeed - 1) // speedDec
-# toVisit = min(n, (maxSpeed - 1) // speedDec + 1 - minShift)
-#
-# assert toVisit > 0
-#
-# max_val = 0
-#
-# for di in [-1, 1]:
-#     pos = di * minShift
-#     pos %= n
-#     pos += n
-#     pos %= n
-#     max_val = max(max_val, win[pos])
-#     for i in range(toVisit):
-#         pos += di
-#         pos %= n
-#         pos += n
-#         pos %= n
-#
-# assert max_val > 0
-# print(max_val)
-
+n = int(input())
+vals = list(map(int, input().split()))
+a, b, k = map(int, input().split())
+minsect = (a - 1) // k
+maxsect = (b - 1) // k
+ans = -1
+for j in range(2):
+    usedsect = [False] * n
+    for i in range(minsect, maxsect + 1):
+        ans = max(ans, vals[i % n])
+        if usedsect[i % n]:
+            break
+        usedsect[i % n] = True
+    vals = [vals[0]] + vals[1:][::-1]
+print(ans)

@@ -48,7 +48,6 @@ prices.reverse()
 value = 0
 max_value = 0
 
-
 # if n - k == 0:
 #     r = n
 
@@ -73,11 +72,7 @@ for i in range(n):
     if value > max_value:
         max_value = value
 
-
-
 print(f'\n\tANSWER: {max_value}')
-
-
 
 print('\n\n\n-------------DONE----------------\n')
 
@@ -106,3 +101,14 @@ for i in range(n):
 
 print(max_value)
 
+print('----yandex----')
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+maxinc = 0
+for i in range(n):
+    for j in range(k + 1):
+        if i + j < n:
+            maxinc = max(maxinc, a[i + j] - a[i])
+
+print(maxinc)

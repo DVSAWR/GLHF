@@ -12,10 +12,14 @@
 
 - [Домашнее задание #2](https://tn-gvu.mckx.ru/c/eRsWAAAAJUUBALxP/-ooqBA/p6z7kXG9YrtoXpXE/?u=https%3A%2F%2Fcontest.yandex.ru%2Fcontest%2F59540%3Futm_source%3Dmindbox%26utm_medium%3Demail%26utm_campaign%3Dtraining5%26utm_content%3Ddigest)
 
+- [Тренировки по алгоритмам 5.0 Разбор задач второй лекции](https://www.youtube.com/watch?v=PyLX9vzrwqY&ab_channel=Young%26%26Yandex)
+
+
+3. [Тренировки по алгоритмам 5.0 Лекция 3: Множества и словари](https://www.youtube.com/watch?v=jQOnYzW8ZOE&ab_channel=Young%26%26Yandex)
+- [Домашнее задание #3](https://contest.yandex.ru/contest/59541/problems/)
 - []()
 
-
-3. []()
+4. [Тренировки по алгоритмам 5.0 Лекция 4: Бинарный поиск](https://www.youtube.com/watch?v=-B6xvDeGyPg&ab_channel=Young%26%26Yandex)
 
 
 
