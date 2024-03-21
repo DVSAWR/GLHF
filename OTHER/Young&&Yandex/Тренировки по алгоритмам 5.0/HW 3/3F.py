@@ -31,4 +31,24 @@ a aa aa bc abcd
 print('\n---------DONE---------\n')
 
 
+# first = input().split()
+# second = input().split()
 
+first = 'a b'.split()
+second = 'abdafb basrt casds dsasa a'.split()
+
+
+
+print(first)
+
+print(second)
+
+answer = []
+
+for i in second:
+    print(i[0])
+    if i[0] in first:
+        answer.append(0)
+
+
+print(answer)
