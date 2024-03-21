@@ -30,7 +30,6 @@
 1
 5
 
-
 '''
 
 print('----DONE-----')
@@ -60,5 +59,3 @@ for k, v in d.items():
         answer.append(k)
 
 print(*sorted(answer))
-
-
