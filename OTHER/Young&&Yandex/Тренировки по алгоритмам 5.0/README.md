@@ -1,5 +1,5 @@
 ## Тренировки по алгоритмам 5.0 (01.03.2024)
-
+6 + 5 + 6 + 1 = 18 !
 
 1. [Открытие Тренировок, Лекция 1: Сложность, тестирование, особые случаи](https://tn-gvu.mckx.ru/c/uhYWAAAARU0AABw9/jjAoBA/oDmktvtrUh987PI-/?u=https%3A%2F%2Fyoutube.com%2Flive%2FSVkJ77_Fl1o%3Ffeature%3Dshare%26utm_source%3Dmindbox%26utm_medium%3Demail%26utm_campaign%3Dtraining5%26utm_content%3Ddigest)
 - [Домашнее задание #1](https://tn-gvu.mckx.ru/c/uhYWAAAARU0AABw9/jzAoBA/yYTcR5b4Yz8iOIcs/?u=https%3A%2F%2Fcontest.yandex.ru%2Fcontest%2F59539%2Fenter%2F%3Futm_source%3Dmindbox%26utm_medium%3Demail%26utm_campaign%3Dtraining5%26utm_content%3Ddigest)
@@ -18,6 +18,6 @@
 
 4. [Тренировки по алгоритмам 5.0 Лекция 4: Бинарный поиск](https://www.youtube.com/watch?v=-B6xvDeGyPg&ab_channel=Young%26%26Yandex)
 
-- [Домашнее задание #4]()
+- [Домашнее задание #4](https://tn-gvu.mckx.ru/c/Pn8WAAAA1Q0AAIKK/Bpg9BA/oRe4dp8lf-TwloCW/?u=https%3A%2F%2Fcontest.yandex.ru%2Fcontest%2F59542%3Futm_source%3Dmindbox%26utm_medium%3Demail%26utm_campaign%3Dtraining5%26utm_content%3Ddigest)
 - []()
 

@@ -27,17 +27,51 @@ a aa aaa bcd abcd
 a aa aa bc abcd
 
 '''
+#
+# print('-------monk-time(GitHub)---------')
+# from collections import defaultdict
+# from functools import reduce
+# from typing import Iterable
+#
+# LEAF = object()
+#
+#
+# def replace_words(words: list[str], prefixes: list[str]) -> Iterable[str]:
+#     make_tree = lambda: defaultdict(make_tree)
+#     prefix_tree = make_tree()
+#     for prefix in prefixes:
+#         leaf = reduce(lambda tree, ch: tree[ch], prefix, prefix_tree)
+#         leaf[LEAF] = prefix  # type: ignore
+#     for word in words:
+#         subtree = prefix_tree
+#         for char in word:
+#             if char not in subtree:
+#                 yield word
+#                 break
+#             subtree = subtree[char]
+#             if LEAF in subtree:
+#                 yield subtree[LEAF]
+#                 break
+#         else:  # no break
+#             yield word
+#
+#
+# if __name__ == '__main__':
+#     prefixes = input().split()
+#     words = input().split()
+#     print(*replace_words(words, prefixes), sep=' ')
+
 
 print('\n---------DONE---------\n')
-
 
 # first = input().split()
 # second = input().split()
 
-first = 'a b'.split()
-second = 'abdafb basrt casds dsasa a'.split()
+# first = 'a b'.split()
+# second = 'abdafb basrt casds dsasa a'.split()
 
-
+first = 'aa bc aaa'.split()
+second = 'a aa aaa bcd abcd'.split()
 
 print(first)
 
@@ -46,9 +80,138 @@ print(second)
 answer = []
 
 for i in second:
-    print(i[0])
+    print(i)
     if i[0] in first:
-        answer.append(0)
+        print('IN FIRST')
+        q = first[first.index(i[0])]
+        if len(i) > len(q):
+            print('>', q)
+            answer.append(q)
+        else:
+            answer.append(i)
+            print('>', i)
+    else:
+        answer.append(i)
+
+print(*answer)
+
+# a b
+# abdafb basrt casds dsasa a
+#
+# a b casds dsasa a
+#
+# aa bc aaa
+# a aa aaa bcd abcd
+#
+# a aa aa bc abcd
 
 
-print(answer)
+from collections import defaultdict
+
+# sup = '\0'
+#
+#
+# def replace_words(words, prefixes):
+#     def make_tree():
+#         return defaultdict(make_tree)
+#
+#     prefix_tree = make_tree()
+#
+#     for prefix in prefixes:
+#         subtree = prefix_tree
+#         for ch in prefix:
+#             subtree = subtree[ch]
+#         subtree[sup] = prefix
+#
+#     result = []
+#     for word in words:
+#         subtree = prefix_tree
+#         found = False
+#
+#         for ch in word:
+#             if ch not in subtree:
+#                 result.append(word)
+#                 found = True
+#                 break
+#
+#             subtree = subtree[ch]
+#             if sup in subtree:
+#                 result.append(subtree[sup])
+#                 found = True
+#                 break
+#
+#         if not found:
+#             result.append(word)
+#
+#     return result
+#
+#
+# def main():
+#     input_prefixes = sys.stdin.readline().strip()
+#     input_words = sys.stdin.readline().strip()
+#
+#     prefixes = input_prefixes.split()
+#     words = input_words.split()
+#
+#     replaced_words = replace_words(words, prefixes)
+#     for word in replaced_words:
+#         print(word, end=' ')
+#
+#
+# if __name__ == "__main__":
+#     main()
+
+
+print('-------HOW YOU DONE---------')
+
+from collections import defaultdict
+
+reduct_dict = input().split()
+text = input().split()
+answer = []
+
+
+def def_dict():
+    return defaultdict(def_dict)
+
+
+reduct_def_dict = def_dict()
+sub = ''
+
+for reduction in reduct_dict:
+    subd = reduct_def_dict
+    for symbol in reduction:
+        subd = subd[symbol]
+    subd[sub] = reduction
+
+for word in text:
+    subd = reduct_def_dict
+    found = False
+
+    for symbol in word:
+        if symbol not in subd:
+            answer.append(word)
+            found = True
+            break
+
+        subd = subd[symbol]
+
+        if sub in subd:
+            answer.append(subd[sub])
+            found = True
+            break
+
+    if not found:
+        answer.append(word)
+
+print(*answer)
+
+# a b
+# abdafb basrt casds dsasa a
+#
+# a b casds dsasa a
+#
+# aa bc aaa
+# a aa aaa bcd abcd
+#
+# a aa aa bc abcd
