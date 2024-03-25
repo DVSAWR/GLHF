@@ -4,34 +4,29 @@
 '''
 
 
-print('----DONE CHAT GPT------')
+print('----DONE------')
+
+from itertools import accumulate
 
 n, m = map(int, input().split())
-orc_count = list(map(int, input().split()))
 
-prefix_sum = [0] * (n+1)
-for i in range(n):
-    prefix_sum[i+1] = prefix_sum[i] + orc_count[i]
+a = list(map(int, input().split()))
 
-def find_starting_group(prefix_sum, s):
-    left, right = 0, len(prefix_sum) - 1
-    while left < right:
-        mid = (left + right) // 2
-        if prefix_sum[mid] < s:
-            left = mid + 1
-        else:
-            right = mid
-    return left if prefix_sum[left] >= s else -1
+summa = list(accumulate([0] + a))
 
 for _ in range(m):
-    l, s = map(int, input().split())
-    start_group = find_starting_group(prefix_sum, s)
-    if start_group == -1 or start_group + l - 1 > n:
-        print(-1)
-    else:
-        print(start_group)
+    leng, s = map(int, input().split())
 
-# 5 2
-# 1 3 5 7 9
-# 2 4
-# 1 3
+    l = 0
+    r = n - leng + 1
+    while l < r - 1:
+        mid = (l + r) // 2
+        if summa[mid + leng] - summa[mid] > s:
+            r = mid
+        else:
+            l = mid
+
+    if summa[l + leng] - summa[l] == s:
+        print(l + 1)
+    else:
+        print(-1)

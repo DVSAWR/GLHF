@@ -52,18 +52,21 @@ k
 '''
 
 
-print('------DONE------')
+print('------DONE HELP------')
 
+def check(k):
+    x= k * k * (k + 1) // 2 - k * (k + 1) * (2 * k + 1) // 6 + k * (k + 1)
+    return x<= n + 1
 
-
-
-def lbinsearch(l, r, check, checkparams):
-    while l < r:
-        m = (l + r) // 2
-        if check(m, checkparams):
-            r = m
-        else:
-            l = m + 1
-    return l
+n = int(input())
+l = 0
+r = n + 1
+while r - l > 1:
+    m = (l + r) // 2
+    if check(m):
+        l = m
+    else:
+        r = m
+print(l)
 
 

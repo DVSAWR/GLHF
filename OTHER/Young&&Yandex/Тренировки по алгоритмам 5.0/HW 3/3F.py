@@ -162,7 +162,7 @@ from collections import defaultdict
 #     main()
 
 
-print('-------HOW YOU DONE---------')
+print('-------DONE HELP---------')
 
 from collections import defaultdict
 
