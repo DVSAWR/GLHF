@@ -66,3 +66,24 @@ if answer:
     print('YES')
 else:
     print('NO')
+
+
+print('---------yandex---------')
+
+def sol(nums, k):
+    lastk = set()
+    for i in range(len(nums)):
+        if nums[i] in lastk:
+            return True
+        lastk.add(nums[i])
+        if i >= k:
+            lastk.remove(nums[i - k])
+    return False
+
+n, k = map(int, input().split())
+nums = list(map(int, input().split()))
+
+if sol(nums, k):
+    print('YES')
+else:
+    print('NO')

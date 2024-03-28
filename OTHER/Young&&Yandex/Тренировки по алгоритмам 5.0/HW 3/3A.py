@@ -142,3 +142,16 @@ print(' '.join(sorted(answer)))
 # 1
 # 2
 # GoGetIt Life
+
+print('---------yandex----------')
+n = int(input())
+k = int(input())
+ans = set(input().split())
+
+for i in range(n - 1):
+    k = int(input())
+    now = set(input().split())
+    ans = ans & now
+
+print(len(ans))
+print(*sorted(ans))

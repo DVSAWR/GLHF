@@ -215,3 +215,18 @@ print(*answer)
 # a aa aaa bcd abcd
 #
 # a aa aa bc abcd
+
+print('----------yandex----------')
+
+dictset = set(input().split())
+ans = []
+for word in input().split():
+    for i in range(1, min(101, len(word))):
+        part = word[:i]
+        if part in dictset:
+            ans.append(part)
+            break
+    else:
+        ans.append(word)
+
+print(' '.join(ans))
