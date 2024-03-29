@@ -144,6 +144,7 @@ print(' '.join(sorted(answer)))
 # GoGetIt Life
 
 print('---------yandex----------')
+
 n = int(input())
 k = int(input())
 ans = set(input().split())
