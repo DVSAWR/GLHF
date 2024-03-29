@@ -160,7 +160,7 @@ def rbinsearch(l, r, check, checkparams):
     return l
 
 
-print('-----DONE CHAT GPT-----')
+print('-----DONE-----')
 
 from bisect import bisect_left, bisect_right
 from collections import Counter
@@ -202,3 +202,28 @@ print(*answer)
 # Таким образом, этот код использует бинарный поиск с помощью функций bisect_left и bisect_right, чтобы найти количество элементов в отсортированном массиве array, которые находятся между l и r.
 
 print('------yandex------')
+
+def binsearch(a, val):
+    l = 0
+    r = len(a)
+    while l < r:
+        m = (l + r) // 2
+        if a[m] >= val:
+            r = m
+        else:
+            l = m + 1
+    return l
+
+n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+a.append(10**9 + 1)
+k = int(input())
+ans = []
+for i in range(k):
+    mn, mx = map(int, input().split())
+    posmn = binsearch(a, mn)
+    posmx = binsearch(a, mx + 1)
+    ans.append(posmx - posmn)
+
+print(*ans)
