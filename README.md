@@ -8,11 +8,11 @@
 
 
 ## Сайты с задачами
-[coderun.yeandex.ru](coderun.yeandex.ru)
-[leetcode.com](leetcode.com)
-[codeforces.com](codeforces.com)
+- [leetcode.com](leetcode.com)
+- [codeforces.com](codeforces.com)
+- [coderun.yeandex.ru](coderun.yeandex.ru)
 
 
 
 ## Книги
-"Алгоритмы: построение и анализ" Томас Кормен
+- "Алгоритмы: построение и анализ" **Томас Кормен**
