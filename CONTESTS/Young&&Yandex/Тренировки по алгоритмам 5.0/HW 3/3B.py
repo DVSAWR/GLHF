@@ -1,6 +1,6 @@
-'''
-
-Задано две строки, нужно проверить, является ли одна анаграммой другой. Анаграммой называется строка, полученная из другой перестановкой букв.
+"""
+Задано две строки, нужно проверить, является ли одна анаграммой другой. Анаграммой называется строка,
+полученная из другой перестановкой букв.
 
 Формат ввода
 Строки состоят из строчных латинских букв, их длина не превосходит 100000. Каждая записана в отдельной строке.
@@ -9,19 +9,19 @@
 Выведите "YES" если одна из строк является анаграммой другой и "NO" в противном случае.
 
 Пример 1
-Ввод	Вывод
 dusty
 study
+
 YES
+
 Пример 2
-Ввод	Вывод
 rat
 bat
+
 NO
+"""
 
-'''
-
-print('-----DONE-----')
+print('---------answer----------')
 
 first, second = input(), input()
 if sorted(list(first)) == sorted(list(second)):
@@ -29,10 +29,8 @@ if sorted(list(first)) == sorted(list(second)):
 else:
     print('NO')
 
-
 # dusty
 # study
-#
 # rat
 # bat
 # zirkanrlepcmvyjbpgpizexomgzmymouadzywuitkhicnqtrszvrwukcvoknymyiqfdvkdubisfvzidwplywyzjssymazynkubqv
@@ -40,11 +38,13 @@ else:
 
 print('---------yandex----------')
 
+
 def make_counter(s):
     ans = {}
     for c in s:
         ans[c] = ans.get(c, 0) + 1
     return ans
+
 
 dct1 = make_counter(input())
 dct2 = make_counter(input())
@@ -57,4 +57,3 @@ if len(dct1) == len(dct2) and flag:
     print('YES')
 else:
     print('NO')
-
