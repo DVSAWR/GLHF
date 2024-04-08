@@ -16,7 +16,7 @@ def call(a: int) -> str:
 decorated_call = decorator(call)
 print(decorated_call(1) == '1')
 
-print('---- Сокращение ----')
+print('\n---- Сокращение ----')
 
 
 @decorator
@@ -26,7 +26,7 @@ def call(a: int) -> str:
 
 print(call(1) == '1')
 
-print('---- Использование functools wraps ----')
+print('\n---- Использование functools wraps ----')
 
 from functools import wraps
 
@@ -49,7 +49,7 @@ def call(a: int) -> str:
 decorated_call = decorator(call)
 print(decorated_call(1) == '1')
 
-print('---- Декоратор с параметрами ----')
+print('\n---- Декоратор с параметрами ----')
 
 
 def decorator_wrapper(arg1, arg2):
@@ -68,7 +68,7 @@ def func(): ...
 
 
 print('\ngeeksforgeeks.org examples')
-print('---- Treating the functions as objects ----')
+print('\n---- Treating the functions as objects ----')
 
 
 def shout(text: str):
@@ -80,7 +80,7 @@ print(shout('qwe'))
 smth = shout
 print(smth('qwe'))
 
-print('---- Passing the function as an argument ----')
+print('\n---- Passing the function as an argument ----')
 
 
 def shout(text: str):
@@ -99,7 +99,7 @@ def greet(function):
 greet(shout)
 greet(whisper)
 
-print('---- Returning functions from another function ----')
+print('\n---- Returning functions from another function ----')
 
 
 def create_adder(x):
@@ -112,7 +112,7 @@ def create_adder(x):
 add_15 = create_adder(10)
 print(add_15(10))
 
-print('---- Decorator can modify the behaviour ----')
+print('\n---- Decorator can modify the behaviour ----')
 
 
 def hello_decorator(function):
@@ -132,7 +132,7 @@ def call():
 # hello_decorator(call)
 call()
 
-print('---- The execution time of a function ----')
+print('\n---- The execution time of a function ----')
 
 import time
 import math
@@ -161,7 +161,7 @@ my_function(10)
 my_function_with_decorator = calculate_time(my_function)
 my_function_with_decorator(10)
 
-print('---- Chaining Decorators ----')
+print('\n---- Chaining Decorators ----')
 
 
 def decorator_1(function):

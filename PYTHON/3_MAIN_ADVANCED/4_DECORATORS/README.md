@@ -1,6 +1,6 @@
 ## DECORATORS
 
-[INFO geeksforgeeks.org](https://www.geeksforgeeks.org/decorators-in-python/)
+[INFO geeksforgeeks.org](https://www.geeksforgeeks.org/decorators-in-python/)\
 [INFO habr.com](https://habr.com/ru/articles/750312/)
 
 Декораторы в Python позволяют расширять и изменять поведение вызываемых объектов 
