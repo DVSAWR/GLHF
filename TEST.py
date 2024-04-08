@@ -45,23 +45,21 @@ print('\n')
 #     print(smth + lst[i + 1][1])
 
 
-lst = [str(i) + 'q' for i in range(10)]
-print(lst)
+sum = 0
+numbers = [7, 5, 8, 11, 2, 5, 4, 2, 2, 2]
 
-for i in lst:
-    if i == '8q':
-        print('FIND')
+for i in numbers:
+    if i % 2 == 0:
+        sum += i
 
-lst.pop(8)
-print(lst)
+print(sum)
 
-print(tuple(range(1, 4)))
+class Person:
+    def __init__(self, age):
+        self.age = age
 
-n = 5
-mystr = '5 4 3 2 1'
+p = Person(25)
+print(p.age)
 
-d = {k: v for k, v in zip(range(n), mystr.split())}
-print(d)
-
-print(d[1])
-print(d[-1])
+p.age = 30
+print(p.age)
