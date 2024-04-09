@@ -144,5 +144,3 @@ print(add_two(3))
 print(trace(lambda x: x ** 2)(3))
 
 print(list(map(trace(lambda x: x * 2), range(3))))
-
-print('\n---- Closure ----')

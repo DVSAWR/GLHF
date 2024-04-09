@@ -54,9 +54,11 @@ for i in numbers:
 
 print(sum)
 
+
 class Person:
     def __init__(self, age):
         self.age = age
+
 
 p = Person(25)
 print(p.age)
@@ -65,8 +67,23 @@ p.age = 30
 print(p.age)
 
 print('\n')
-for i in range(1, 11):
-    for j in range(1, 11):
+for i in range(1, 10):
+    for j in range(1, 10):
         print(i * j, end='\t')
-        if j == 10:
+        if j == 9:
             print('')
+
+print('\n')
+num = 1234
+lst = []
+
+print(f'lst = {lst}')
+print(f'num = {num}')
+
+while num != 0:
+    lst.append(num % 10)
+    print(f'lst = {lst}')
+    num = num // 10
+    print(f'num = {num}')
+
+print('YES' if 2 in lst else 'NO')
