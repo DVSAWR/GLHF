@@ -1,98 +1,130 @@
 import re
 
-mystr = 'an example word:cat!!'
-match = re.search(r'word:\w\w\w', mystr)
-if match:
-    print('found:', match.group())
-else:
-    print('not found')
 
-print('\n---- Основные примеры ----')
+def preview(x):
+    print(f'\n---- {x} ----')
 
-match = re.search(r'iii', 'piiig')
-print(match)
-print(match.group())
 
-match = re.search(r'igs', 'piiig')
-print(match)
+text = 'abbbbc abbbbc12345 !*?@#$%ZXC'
 
-match = re.search(r'..g', 'piiig')
-print(match)
-print(match.group())
+preview('Специальные символы')
 
-print('\n---- Повторение ----')
+preview('.')
+# любой символ
 
-match = re.search(r'pi+', 'piiig')
-print(match)
-print(match.group())
+print(re.search(r'.', text))
 
-match = re.search(r'i+', 'piiig')
-print(match)
-print(match.group())
+preview('^')
+# начало строки
+print(re.search(r'^.', text))
 
-match = re.search(r'\d\s*\d\s*\d', 'xx1 2   3xx')
-print(match)
-print(match.group())
-match = re.search(r'\d\s*\d\s*\d', 'xx12   3xx')
-print(match)
-print(match.group())
-match = re.search(r'\d\s*\d\s*\d', 'xx123xx')
-print(match)
-print(match.group())
+preview('$')
+# конец строки
+print(re.search(r'.$', text))
 
-print('\n---- Пример электронной почты ----')
+preview('*')
+# 0 или более повторений
+print(re.search(r'ab*', text))
 
-mystr = 'purple alice-b@google.com monkey dishwasher'
-match = re.search(r'\w+@\w+', mystr)
-if match:
-    print(match)
-    print(match.group())
+preview('+')
+# 1 или более повторений
+print(re.search(r'ab+', text))
 
-print('\n---- Квадратные скобки ----')
+preview('?')
+# 0 или 1 повторений
+print(re.search(r'ab?', text))
 
-match = re.search(r'[\w.-]+@[\w.-]+', mystr)
-if match:
-    print(match)
-    print(match.group())
+preview('*?, +?, ??')
+# ограничение жадности
+print(re.search(r'^.*?', text))
+print(re.search(r'^.+?', text))
+print(re.search(r'^.??', text))
 
-print('\n---- Груповое извлечение ----')
+preview('*+, ++, ?+')
+# притяжательные квантификаторы
+print(re.search(r'^.*+', text))
+print(re.search(r'^.++', text))
+print(re.search(r'^.?+', text))
 
-mystr = 'purple alice-b@google.com monkey dishwasher'
-match = re.search(r'([\w.-]+)@([\w.-]+)', mystr)
-if match:
-    print(match.group())
-    print(match.group(1))
-    print(match.group(2))
+preview('{m}')
+# m повторений
+print(re.search(r'b{4}', text))
+print(re.search(r'b{6}', text))
 
-print('\n---- Найти все ----')
+preview('{m,n}')
+# как можно больше повторений в промежутке от m до n
+print(re.search(r'b{2,5}', text))
 
-mystr = 'purple alice@google.com, blah monkey bob@abc.com blah dishwasher'
+preview('{m,n}?')
+# как можно меньше повторений в промежутке от m до n
+print(re.search(r'b{2,5}?', text))
 
-emails = re.findall(r'[\w.-]+@[\w.-]+', mystr)
+preview('{m,n}+')
+# притяжательная версия квантификатора выше
+print(re.search(r'b{2,5}+c', text))
 
-for email in emails:
-    print(email)
+preview('{\\}')
+# экранирование специальных символов
+print(re.search(r'^.*\*', text))
 
-print('\n---- findall с файлами ----')
+preview('[]')
+# символьный класс
+print(re.search(r'[b-z]+[1-5]', text))
 
-with open('README.md', 'r') as file:
-    match = re.findall(r'REG\w+.\w+', file.read())
-    if match:
-        print(match)
-    else:
-        print('NO')
+preview('|')
+# или
+print(re.search(r'[#]|[1-5]', text))
 
-print('\n---- findall и группы ----')
+preview('(...)')
+# группа с захватом
+print(re.search(r'(\w+3.)', text))
 
-mystr = 'purple alice@google.com, blah monkey bob@abc.com blah dishwasher'
-tuples = re.findall(r'([\w.-]+)@([\w.-]+)', mystr)
-print(tuples)
-for t in tuples:
-    print(f'{t[0]} -> {t[1]}')
+preview('Расширения регулярных выражений')
 
-print('\n---- Замена ----')
+preview('(?aiLmsux)')
+# установка флагов регулярного выражения
+print(re.search(r'(?i)zx', text))
+print(re.search(r'(?si)BC', text))
 
-mystr = 'purple alice@google.com, blah monkey bob@abc.com blah dishwasher'
-print(mystr)
-emails = re.sub(r'([\w.-]+)@([\w.-]+)', r'\1@EMAIL.COM', mystr)
-print(emails)
+# re.a - сопоставление только в ASCII
+# re.i - игнорирование регистра
+# re.L - в зависимости от локали
+# re.m - многострочный
+# re.s - точка соответствует всем
+# re.u - сопоставление в Юникоде
+# re.x - режим отладки
+
+preview('(?aiLmsux-imsx:...)')
+# установка и удаление флагов;
+print(re.search(r'(?a-i:ZX)', text))
+
+preview('?>...')
+# атомарная группа
+
+preview('(?:...)')
+# группа без захвата
+
+preview('(?P<name>...)')
+# именованная группа
+
+preview('(?P=name)')
+# обратная ссылка на именованную группу
+
+preview('(?#...)')
+# комментарий
+print(re.search('(?#si)BC', text))
+
+preview('(?=...)')
+# опережающая позитивная проверка;
+
+preview('(?!...)')
+# опережающая негативная проверка;
+
+preview('(?<=...)')
+# позитивная ретроспективная проверка;
+
+preview('(?<!...)')
+# негативная ретроспективная проверка;
+
+preview('(?(id/name)yes-pattern|no-pattern)')
+# стараться соответствовать yes-pattern;
