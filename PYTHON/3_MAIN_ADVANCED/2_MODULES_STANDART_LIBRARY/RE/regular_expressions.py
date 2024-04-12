@@ -8,6 +8,7 @@ def preview(x):
 text = 'abbbbc abbbbc12345 !*?@#$%ZXC'
 
 preview('Специальные символы')
+#
 
 preview('.')
 # любой символ
@@ -80,6 +81,7 @@ preview('(...)')
 print(re.search(r'(\w+3.)', text))
 
 preview('Расширения регулярных выражений')
+#
 
 preview('(?aiLmsux)')
 # установка флагов регулярного выражения
@@ -100,31 +102,86 @@ print(re.search(r'(?a-i:ZX)', text))
 
 preview('?>...')
 # атомарная группа
+print(re.search(r'(?>.)', text))
 
 preview('(?:...)')
 # группа без захвата
+print(re.findall(r'(?:[ab]+)', text))
 
 preview('(?P<name>...)')
 # именованная группа
+print(re.findall(r'(?P<group>[ab]+)', text))
 
 preview('(?P=name)')
 # обратная ссылка на именованную группу
 
 preview('(?#...)')
 # комментарий
-print(re.search('(?#si)BC', text))
+print(re.search(r'(?si)BC', text))
+print(re.search(r'(?#si)BC', text))
 
 preview('(?=...)')
-# опережающая позитивная проверка;
+# опережающая позитивная проверка
+print(re.search(r'c(?=[0-10])..', text))
 
 preview('(?!...)')
-# опережающая негативная проверка;
+# опережающая негативная проверка
+print(re.search(r'c(?![0-10])..', text))
 
 preview('(?<=...)')
-# позитивная ретроспективная проверка;
+# позитивная ретроспективная проверка
+print(re.search(r'(?<=!).+', text))
 
 preview('(?<!...)')
-# негативная ретроспективная проверка;
+# негативная ретроспективная проверка
 
 preview('(?(id/name)yes-pattern|no-pattern)')
 # стараться соответствовать yes-pattern;
+
+preview('Специальные последовательности')
+#
+
+preview('\\number')
+# соответствие группы с тем же номером
+p = re.compile(r'(\b\w+)\s+\1')
+print(p.search('Pris in the the spring'))
+
+preview('\A')
+# только с начало строки
+print(re.search(r'\A.', text))
+
+preview('\\b')
+# пустая строка (начало или конец слова)
+print(re.findall(r'\bqwe\b', 'qwe qwe. (qwe) asd qwe asd asdqwe qwe2'))
+
+preview('\B')
+# пустая строка (НЕ начало или конец слова)
+print(re.findall(r'qwe\B', 'qwe qwe. (qwe) asd qwe asd asdqwe qwe2'))
+
+preview('\d')
+# любая десятичная цифра
+print(re.search(r'\d+', text))
+
+preview('\D')
+# НЕ десятичная цифра
+print(re.findall(r'\D+', text))
+
+preview('\s')
+# пробельный символ
+print(re.findall(r'\s+', text))
+
+preview('\S')
+# НЕ пробельный символ
+print(re.findall(r'\S+', text))
+
+preview('\w')
+# символы, которые могут быть частью слова
+print(re.findall(r'\w+', text))
+
+preview('\W')
+# символы, которые НЕ могут быть частью слова
+print(re.findall(r'\W+', text))
+
+preview('\Z')
+# только с конец строки
+print(re.findall(r'\w+\Z', text))
