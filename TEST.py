@@ -87,3 +87,113 @@ while num != 0:
     print(f'num = {num}')
 
 print('YES' if 2 in lst else 'NO')
+
+print('\n\n---- ALGORITHM EASY TASKS ----')
+
+print('\nTASK 1')
+a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+
+answer = ""
+for i in a:
+    if i > 5:
+        answer += str(i) + " "
+print(answer)
+
+for i in a:
+    if i > 5:
+        print(i, end=" ")
+print('')
+
+print(list(i for i in a if i > 5))
+print([i for i in a if i > 5])
+
+print('\nTASK 2')
+a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+
+answer = []
+
+for i in a:
+    if i in b:
+        answer.append(i)
+print(answer)
+
+print(list(set(a) & set(b)))
+
+print([i for i in a if i in b])
+
+print(list(filter(lambda i: i in b, a)))
+
+print('\nTASK 3')
+d = {k: v for k, v in zip('tacos', range(5))}
+
+print(sorted(d.items(), key=lambda item: item[1]))
+print(sorted(d.items(), key=lambda item: item[1], reverse=True))
+
+print('\nTASK 4')
+d = {k: v for k, v in zip('tacos', range(10))}
+d2 = {k: v for k, v in zip('burrito', range(10))}
+print(d)
+print(d2)
+
+answer = {}
+
+for i in (d, d2):
+    answer.update(i)
+print(answer)
+
+answer = {**d, **d2}
+print(answer)
+
+answer = dict(list(d.items()) + list(d2.items()))
+print(answer)
+
+print('')
+from itertools import chain
+
+all = {}
+for k, v in chain(d.items(), d2.items()):
+    if k in all:
+        if all[k] < v:
+            all[k] = 'QWE'
+    else:
+        all[k] = v
+
+print(all)
+
+print('\nTASK 5')
+d3 = {'a': 500, 'b': 5874, 'c': 560, 'd': 400, 'e': 5874, 'f': 20}
+print(d3)
+
+my_dict = dict(sorted(d3.items(), key=lambda item: item[1], reverse=True))
+print(my_dict)
+
+answer = list(my_dict.values())[:3]
+print(*answer)
+
+answer = list(sorted(d3.values(), reverse=True))[:3]
+print(*answer)
+
+for i in list(sorted(d3.values(), reverse=True))[:3]:
+    print(i, end=" ")
+print('')
+
+print('\nTASK 6')
+
+print(int('ABC', 16))
+print(int('-0xf', base=16))
+print(int('0b111', base=2))
+
+print('\nTASK 7')
+
+
+def pascal_triangle(n):
+    row = [1]
+    for i in range(max(n, 0)):
+        print(row)
+        row = [left + right for left, right in zip(row, row)]
+
+
+pascal_triangle(6)
+
+n = 6
