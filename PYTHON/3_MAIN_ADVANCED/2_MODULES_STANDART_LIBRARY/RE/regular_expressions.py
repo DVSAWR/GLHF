@@ -185,3 +185,6 @@ print(re.findall(r'\W+', text))
 preview('\Z')
 # только с конец строки
 print(re.findall(r'\w+\Z', text))
+
+preview('FUNCTIONS')
+
