@@ -1,6 +1,6 @@
 ## SQL - Structured Query Language
 
-SQL — язык запросов для управления реляционными базами данных
+SQL — язык запросов для управления реляционными базами данных \
 [INFO habr.com](https://habr.com/ru/articles/564390/#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B-sql)
 
 ### Виды SQL-запросов
