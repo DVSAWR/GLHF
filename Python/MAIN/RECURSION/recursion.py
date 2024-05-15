@@ -40,7 +40,7 @@ n = 5
 for i in range(0, n):
     print(fib(i), end=' ')
 
-preview('REAL PYTHON.com')
+preview('REAL Python.com')
 print('')
 
 preview('count down to zero')

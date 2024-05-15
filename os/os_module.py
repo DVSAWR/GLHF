@@ -55,7 +55,7 @@ preview('os.link()')
 
 preview('os.listdir()')
 # список файлов и директорий в папке.
-print(os.listdir('../'))
+print(os.listdir('../Python/MAIN/2_MODULES_STANDART_LIBRARY/'))
 
 preview('os.mkdir()')
 # создаёт директорию. OSError, если директория существует.
@@ -134,7 +134,7 @@ print(time.ctime(atime), time.ctime(mtime))
 
 preview('os.walk()')
 # генерация имён файлов в дереве каталогов, сверху вниз (если topdown равен True), либо снизу вверх (если False). Для каждого каталога функция walk возвращает кортеж (путь к каталогу, список каталогов, список файлов).
-for (root, dirs, files) in os.walk('..', topdown=True):
+for (root, dirs, files) in os.walk('../Python/MAIN/2_MODULES_STANDART_LIBRARY', topdown=True):
     print(f'ROOT: {root}')
     print(f'DIRS: {dirs}')
     print(f'FILES: {files}')
@@ -210,7 +210,7 @@ print(os.path.isfile('../test'))
 
 preview('os.path.isdir')
 # является ли путь директорией.
-print(os.path.isfile('..'))
+print(os.path.isfile('../Python/MAIN/2_MODULES_STANDART_LIBRARY'))
 
 preview('s.path.islink()')
 # является ли путь символической ссылкой.
