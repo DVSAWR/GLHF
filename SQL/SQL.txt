@@ -1,3 +1,0 @@
-matrix = [[]] * 2
-matrix[0].extend([0, 1])
-print(matrix)
