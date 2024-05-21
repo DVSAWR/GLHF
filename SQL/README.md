@@ -4,6 +4,8 @@
 [SQL Trainer SQL ACADEMY](https://sql-academy.org/ru/trainer) \
 [SQL Trainer ITResume](https://itresume.ru/problems)
 
+<a name="DATA TYPES">qweqwe</a> 
+
 ## DATABASE STRUCTURE
 
 | DB OBJECTS  | DESCRIPTION                                                                                                                                                                                                             |
