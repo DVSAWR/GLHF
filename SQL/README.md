@@ -137,7 +137,7 @@ FROM
 ORDER BY 1
 ```
 
-![](inner_join.PNG)
+![](inner_.png)
 
 #### LEFT JOIN
 
@@ -152,7 +152,7 @@ WHERE
 ORDER BY 1
 ```
 
-![](left_join.PNG)
+![](left_.png)
 
 #### RIGHT JOIN
 
@@ -166,7 +166,7 @@ WHERE
     m.id is not null
 ORDER BY 1
 ```
-
+![](right_.png)
 #### FULL JOIN
 
 ```sql
