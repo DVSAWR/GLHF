@@ -1,10 +1,35 @@
 # SQL
 
 [habr.com](https://habr.com/ru/articles/564390/#%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B-sql) \
-[SQL Trainer SQL ACADEMY](https://sql-academy.org/ru/trainer) \
-[SQL Trainer ITResume](https://itresume.ru/problems)
+[SQL ACADEMY](https://sql-academy.org/ru/trainer) \
+[ITResume](https://itresume.ru/problems)
 
-<a name="DATA TYPES">qweqwe</a> 
+- [DATABASE STRUCTURE](#database-structure)
+- [DATA TYPES](#data-types)
+    - [PRIMARY KEY / FOREIGN KEY](#primary-key--foreign-key)
+- [REQUEST STRUCTURE](#request-structure)
+    - [SELECT](#select)
+    - [FROM](#from)
+    - [WHERE](#where)
+    - [GROUP BY](#group-by)
+    - [HAVING](#having)
+    - [ORDER BY](#order-by)
+    - [LIMIT](#limit)
+- [FUNCTIONS](#functions)
+    - [COUNT / SUM / AVG / MIN / MAX](#count--sum--avg--min--max)
+- [OPERATORS](#operators)
+- [JOIN OPERATIONS](#join-operations)
+    - [INNER JOIN](#inner-join)
+    - [LEFT JOIN](#left-join)
+    - [RIGHT JOIN](#right-join)
+    - [FULL JOIN](#full-join)
+    - [CROSS JOIN](#cross-join)
+    - [NATURAL JOIN](#natural-join)
+    - [SELF JOIN](#self-join)
+- [TYPIFICATION](#typification)
+- [UNION](#union)
+- [EXCEPT](#except)
+- [INTERSECT](#intersect)
 
 ## DATABASE STRUCTURE
 
@@ -250,7 +275,7 @@ WHERE type1 = 'Electric'
 
 ### INNER JOIN
 
-![](inner_.png)
+![](inner.png)
 
 ```sql
 SELECT
@@ -266,7 +291,7 @@ ORDER BY 1
 
 ### LEFT JOIN
 
-![](left_.png)
+![](left.png)
 
 ```sql
 SELECT
@@ -281,7 +306,7 @@ ORDER BY 1
 
 ### RIGHT JOIN
 
-![](right_.png)
+![](right.png)
 
 ```sql
 SELECT
@@ -296,7 +321,7 @@ ORDER BY 1
 
 ### FULL JOIN
 
-![](full_.PNG)
+![](full.PNG)
 
 ```sql
 SELECT
@@ -311,7 +336,7 @@ ORDER BY
 
 ### CROSS JOIN
 
-![](cross_.PNG)
+![](cross.PNG)
 
 ```sql
 SELECT
@@ -366,6 +391,8 @@ ORDER BY cnt_shipment DESC
 ```
 
 ## UNION
+
+![](union.png)
 
 | UNION TYPE  | DESCRIPTION                                                                                                                                                                                                                                                                                  |
 |-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -448,4 +475,8 @@ LIMIT 1
 
 ## EXCEPT
 
+![](except.png)
+
 ## INTERSECT
+
+![](intersect.png)
