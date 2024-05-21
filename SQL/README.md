@@ -435,30 +435,25 @@ ORDER BY city_name, state, shipping_status
 ```
 
 ```sql
-SELECT
-    c.city_name AS city_name,
-    COUNT(s.ship_id) shippings_fake
-FROM
-    sql.city c
-    JOIN sql.shipment s ON c.city_id=s.city_id
-GROUP BY
-    c.city_name
-HAVING
-     COUNT(s.ship_id) > 10
-UNION
-SELECT
-    c.city_name AS city_name,
-    COUNT(s.ship_id)+5 shippings_fake
-FROM
-    sql.city c
-    JOIN sql.shipment s ON c.city_id=s.city_id
-GROUP BY
-    c.city_name
-HAVING
-     COUNT(s.ship_id) <= 10
-ORDER BY
-    shippings_fake desc,
-    city_name asc
+(
+    SELECT
+       c.city_name,
+       s.weight
+    FROM sql.shipment s
+       JOIN sql.city c ON s.city_id=c.city_id
+    ORDER BY 2 desc
+    LIMIT 1
+)
+UNION ALL
+(
+    SELECT
+       c.city_name,
+       s.weight
+    FROM sql.shipment s
+       JOIN sql.city c ON s.city_id=c.city_id
+    ORDER BY 2
+    LIMIT 1
+)
 ```
 
 ```sql
@@ -517,4 +512,4 @@ FROM
     sql.driver d
 ```
 
-
+## UNIT ECONOMICS 
