@@ -321,7 +321,7 @@ ORDER BY 1
 
 ### FULL JOIN
 
-![](full.PNG)
+![](full.png)
 
 ```sql
 SELECT
@@ -336,7 +336,7 @@ ORDER BY
 
 ### CROSS JOIN
 
-![](cross.PNG)
+![](cross.png)
 
 ```sql
 SELECT
