@@ -14,7 +14,9 @@ DELETE > DELETE
 ### Query Params 
 ( ~ 2000 Symbol count exception)
 
-`http://www.site.com/page.html?parameter1=[@field:fieldname1]&parameter2=[@field:fieldname2]` 
+```html
+http://www.site.com/page.html?parameter1=[@field:fieldname1]&parameter2=[@field:fieldname2]
+``` 
 
 `http://www.site.com/page.html` - URL \
 `?` - Qyert String Begin \

@@ -32,6 +32,7 @@
 - [UNION](#union)
 - [EXCEPT](#except)
 - [INTERSECT](#intersect)
+- [VIEWS](#views)
 
 ## DATABASE STRUCTURE
 
