@@ -16,7 +16,9 @@
     - [ORDER BY](#order-by)
     - [LIMIT](#limit)
 - [FUNCTIONS](#functions)
-    - [COUNT / SUM / AVG / MIN / MAX](#count--sum--avg--min--max)
+    - [STANDARD FUNCTIONS](#standard-functions)
+    - [CUSTOM FUNCTIONS](#custom-functions)
+- [STORED PROCEDURE](#stored-procedure)
 - [OPERATORS](#operators)
 - [JOIN OPERATIONS](#join-operations)
     - [INNER JOIN](#inner-join)
@@ -175,6 +177,8 @@ OFFSET 3 LIMIT 5
 
 ## FUNCTIONS
 
+### STANDARD FUNCTIONS
+
 | FUNCTION [INFO](https://postgrespro.ru/docs/postgrespro/11/functions-aggregate) | DESCRIPTION                                                                   |
 |---------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
 | `AVG`                                                                           | вычисляет среднее значение                                                    |
@@ -227,6 +231,74 @@ FROM sql.pokemon
 WHERE type1 = 'Electric'
     AND type2 IS NOT NULL
     AND (attack > 50 OR defense > 50)
+```
+
+### CUSTOM FUNCTIONS
+
+Функции позволяют выполнять только `SELECT` запросы
+
+```sql
+CREATE [or REPLACE] FUNCTION function_name(param_list)
+   RETURNS return_type 
+   LANGUAGE plpgsql
+AS
+$$
+DECLARE 
+-- variable declaration
+BEGIN
+ -- logic
+END;
+$$
+```
+
+```sql
+CREATE OR REPLACE FUNCTION FindMostExpensivePurchase(customer_id int)
+    RETURNS numeric(10, 2)
+    LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    itemCost numeric(10, 2);
+BEGIN
+    SELECT MAX(cost)
+    INTO itemCost
+    FROM purchases
+    WHERE user_id = customer_id;
+    RETURN itemCost;
+END;
+$$;
+```
+
+## STORED PROCEDURE
+
+Хранимые процедуры позволяют выполнять `INSERT` / `UPDATE` / `DELETE` операции
+
+```sql
+CREATE [OR REPLACE] PROCEDURE procedure_name(parameter_list)
+LANGUAGE language_name
+AS 
+$
+    stored_procedure_body;
+$;
+```
+
+```sql
+CREATE OR REPLACE PROCEDURE transfer(sourceAccountId bigInt, destinationAccountId bigInt, amount Integer)
+LANGUAGE plpgsql
+AS 
+$$
+BEGIN
+    UPDATE accounts
+    SET balance = accounts.balance - amount
+    WHERE id = sourceAccountId;
+
+    UPDATE accounts
+    SET balance = balance + amount
+    WHERE id = destinationAccountId;
+
+    COMMIT;
+END;
+$$;
 ```
 
 ## OPERATORS
@@ -512,4 +584,33 @@ FROM
     sql.driver d
 ```
 
-## UNIT ECONOMICS 
+## VIEWS
+
+View (Представление) - сохраненный запрос в виде объекта БД (виртуальная таблица)
+
+```sql
+CREATE VIEW view_name AS
+SELECT 
+  select_statement
+FROM 
+  table_1
+  JOIN table_2 ON table_1.id = table_2.id
+  JOIN table_3 USING(id) 
+```
+
+```sql
+SELECT *
+FROM view_name 
+```
+
+```sql
+ALTER VIEW old_view_name RENAME TO new_view_name
+```
+
+```sql
+DROP VIEW [IF EXISTS] view_name
+```
+
+## QWE
+
+qwe
