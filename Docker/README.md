@@ -150,35 +150,10 @@ ADD ./app.tar.gz /app
 
 Похоже на `COPY`, но с дополнительными возможностями, напрмер, извлечение архивов.
 
-### DOCKERFILE EXAMPLE
-
-```docker
-# Использовать официальный образ Node.js в качестве базового
-FROM node:20-alpine
-
-# Установить рабочую директорию в /app
-WORKDIR /app
-
-# Копировать package.json и package-lock.json в рабочую директорию
-COPY package*.json ./
-
-# Копировать содержимое текущей директории в контейнер в /app
-COPY . .
-
-# Открыть порт 8080 для внешнего мира
-EXPOSE 8080
-
-# Определить переменную среды
-ENV NODE_ENV=production
-
-# Запустить app.js при старте контейнера
-CMD node app.js
-```
 
 ## DOCKER COMPOSE
 
 Docker Compose - это YAML файл, который определяет многоконтейнерное приложение Docker. Он указывает сервисы, сети и volumes для придложения, а также любые дополнительные опции конфигурации
-
 
 ### DOCKER COMPOSE SYNTAX
 
@@ -201,9 +176,85 @@ networks:
 ```
 
 #### command
+
 Переопределяет команду запуска по умолчанию, указанную в образе Docker
 
 ```docker
 command: ["npm", "start"]
 ```
 
+#### volumes
+
+Определяет именование volumes, которые могут ипользоваться сервисам
+
+```docker
+volumes:
+    my_vlume:
+```
+
+#### environment
+
+Устанавливает переменные окружения для сервиса
+
+```docker
+environment:
+    - NODE_ENV=production
+```
+
+#### ports
+
+Маппит порты хоста на порты контейнера, т.е. определяет запросы на какой порт хост-машины будут перенаправляться на кокой порт контейнера, запущенного на этой машине
+
+```docker
+ports:
+    - "8080:80"
+```
+
+#### depends_on
+
+Указывает зависимости между сервисами, гарантируя, что один сервис запускается до другого
+
+```docker
+depends_on:
+    - db
+```
+
+#### build
+
+Настройка контекста сборки и Dockerfile для сервиса
+
+```docker
+build:
+    context: .
+        dockerfile: Dockerfile.dev
+```
+
+#### volumes_from
+
+Подключает volumes от другого сервиса или контейнера
+
+```docker
+volumes_from:
+    - service_name
+```
+
+## SSH DOCKER
+
+```docker
+services:
+  your-service:
+    image: your-image
+    volumes:
+      - /path/to/your/keys/id_rsa:/root/.ssh/id_rsa
+      - /path/to/your/keys/id_rsa.pub:/root/.ssh/id_rsa.pub
+    ...
+```
+
+```docker
+# В Dockerfile
+FROM ubuntu
+...
+COPY /path/to/your/keys/id_rsa /root/.ssh/id_rsa
+COPY /path/to/your/keys/id_rsa.pub /root/.ssh/id_rsa.pub
+...
+```
