@@ -494,6 +494,143 @@ async def read_num_validation(
 
 ## `Body` MULTIPLE PARAMETERS
 
+`main.py`
+
+```python
+class User(BaseModel):
+    username: str
+    age: int
+
+
+@app.put('/items/{item_id}')
+async def update_item(
+    *,
+    item_id: int = Path(ge=0, le=150),
+    q: str | None = Query(alias='Q-W-E'),
+    user: User,
+    one_more_body: int = Body(embed=True)
+    # When `embed` is `True`, the parameter will be expected in a JSON body
+    # as a key instead of being the JSON body itself.
+    # This happens automatically when more than one `Body` parameter is declared.
+):
+    response = {'item_id': item_id}
+    if q:
+        response.update({'q': q})
+    if user:
+        response.update({'user': user})
+    if one_more_body:
+        response.update({'one_more_body': one_more_body})
+
+    return response
+```
+
+`http://127.0.0.1:8000/items/50?Q-W-E=yes`
+
+Request body
+
+```json
+{
+  "user": {
+    "username": "string",
+    "age": 0
+  },
+  "one_more_body": 6
+}
+```
+
+Response body
+
+```json
+{
+  "item_id": 50,
+  "q": "yes",
+  "user": {
+    "username": "string",
+    "age": 0
+  },
+  "one_more_body": 6
+}
+```
+
+## `Body` NESTED MODELS
+
+`main.py`
+
+```python
+from fastapi import Body, FastAPI, Path, Query
+from pydantic import BaseModel, HttpUrl
+
+app = FastAPI()
+
+
+class DescUrl(BaseModel):
+    url: HttpUrl
+
+
+class Pokemon(BaseModel):
+    name: str
+    hp: int
+    atk: int
+    strong_against: set[str] = []
+    description: DescUrl
+
+
+
+@app.put('/pokemons/{id}')
+async def update_pokemon(id: int, pokemon: Pokemon):
+    response = {'id': id, 'pokemon': pokemon}
+
+    return response
+```
+
+Request body
+
+```json
+{
+  "name": "string",
+  "hp": 0,
+  "atk": 0,
+  "strong_against": [],
+  "description": {
+    "url": "https://example.com/"
+  }
+}
+```
+
+Response body
+
+```json
+{
+  "id": 1,
+  "pokemon": {
+    "name": "string",
+    "hp": 0,
+    "atk": 0,
+    "strong_against": [],
+    "description": {
+      "url": "https://example.com/"
+    }
+  }
+}
+```
+
+## DECLARE REQUEST EXAMPLE DATA
+
+`main.py`
+
+```python
+PYTHONFASTAPI
+```
+
+`URL`
+
+```json
+RESPONSE
+```
+
+```json
+RESPONSE
+```
 
 
 <!--
@@ -506,6 +643,10 @@ PYTHONFASTAPI
 ```
 
 `URL`
+
+```json
+RESPONSE
+```
 
 ```json
 RESPONSE
