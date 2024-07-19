@@ -1,5 +1,8 @@
 # FASTAPI
 
+[INFO](https://fastapi.tiangolo.com/tutorial/first-steps/)
+
+
 ## CREATE APP WITH `FastAPI`
 
 `main.py`
@@ -554,6 +557,8 @@ Response body
 
 ## `Body` NESTED MODELS
 
+With FastAPI, you can define, validate, document, and use arbitrarily deeply nested models
+
 `main.py`
 
 ```python
@@ -616,20 +621,630 @@ Response body
 
 ## DECLARE REQUEST EXAMPLE DATA
 
+You can declare examples of the data your app can receive.
+
+### EXAMPLE WITH EXTRA `JSON` SCHEMA IN `pydantic` MODELS
+
 `main.py`
 
 ```python
-PYTHONFASTAPI
+from fastapi import Body, FastAPI, Path, Query
+from pydantic import BaseModel, HttpUrl
+
+app = FastAPI()
+
+
+class Pokemon(BaseModel):
+    name: str
+    hp: int | None = None
+    weight: float
+
+    model_config = {
+        'json_schema_extra': {
+            'examples': [
+                {
+                    'name': 'Rattata',
+                    'hp': 30,
+                    'weight': 3.5
+                }
+            ]
+        }
+    }
+
+
+@app.put('/pokemons/{id}')
+async def update_pokemon(id: int, pokemon: Pokemon):
+    response = {'id': id, 'pokemon': pokemon}
+    return response
 ```
 
-`URL`
+`http://127.0.0.1:8000/pokemons/1`
 
 ```json
-RESPONSE
+{
+  "id": 1,
+  "pokemon": {
+    "name": "Rattata",
+    "hp": 30,
+    "weight": 3.5
+  }
+}
+```
+
+### EXAMPLE WITH `Field` ADDITIONAL ARGUMENTS
+
+`main.py`
+
+```python
+class Pokemon(BaseModel):
+    name: str = Field(examples=['Rattata'])
+    hp: int | None = Field(None, examples=[30])
+    weight: float = Field(examples=[3.5])
+
+
+@app.put('/pokemons/{id}')
+async def update_pokemon(id: int, pokemon: Pokemon):
+    response = {'id': id, 'pokemon': pokemon}
+    return response
+```
+
+Response body
+
+```json
+{
+  "id": 1,
+  "pokemon": {
+    "name": "Rattata",
+    "hp": 30,
+    "weight": 3.5
+  }
+}
+```
+
+### EXAMPLE WITH `Body`
+
+`main.py`
+
+```python
+@app.put('/pokemons/{id}')
+async def update_pokemon(
+    id: int,
+    pokemon: Pokemon = Body(
+        examples={
+            'normal': {
+                'summary': 'Default example',
+                'description': 'Default description',
+                'value': {
+                    'name': 'Rattata',
+                    'hp': 30,
+                    'weight': 3.5
+                }
+            }
+        }
+    )
+):
+    response = {'id': id, 'pokemon': pokemon}
+    return response
+```
+
+## EXTRA DATA TYPES
+
+Some of the additional data types:
+
+`UUID`
+`datetime.datetime`
+`datetime.date`
+`datetime.time`
+`datetime.timedelta`
+`frozenset`
+`bytes`
+`Decimal`
+[Pydantic data types](https://docs.pydantic.dev/latest/concepts/types/)
+
+### EXAMPLE WITH `UUID`, `datetime`
+
+`main.py`
+
+```python
+import datetime
+from uuid import UUID
+
+
+@app.put('items/{item}')
+async def read_items(
+    item: UUID,
+    start_date: datetime.datetime | None = Body(None),
+    end_date: datetime.datetime | None = Body(None)
+):
+    response = {
+        'item': item,
+        'start_date': start_date,
+        'end_date': end_date
+    }
+
+    return response
+```
+
+## `Cookie` AND `Header` PARAMETERS
+
+`main.py`
+
+```python
+from fastapi import Cookie, Header
+
+
+@app.get('/users')
+async def read_users(
+    cookie_id: str | None = Cookie(None),
+    accept: str | None = Header(None),
+    host: str | None = Header(None),
+    referer: str | None = Header(None),
+
+):
+    return {
+        'cookie_id': cookie_id,
+        'accept': accept,
+        'host': host,
+        'referer': referer,
+    }
 ```
 
 ```json
-RESPONSE
+{
+  "cookie_id": null,
+  "accept": "application/json",
+  "host": "127.0.0.1:8000",
+  "referer": "http://127.0.0.1:8000/docs"
+}
+```
+
+## RESPONSE MODEL
+
+You can declare the type used for the response by annotating the path operation function return type.
+
+You can use type annotations the same way you would for input data in function parameters, you can use Pydantic models, lists, dictionaries, scalar values like integers, booleans, etc
+
+### EXAMPLE WITH INPUT AND OUTPUT MODELS
+
+`main.py`
+
+```python
+class UserIn(BaseModel):
+    username: str
+    password: str
+
+
+class UserOut(BaseModel):
+    username: str
+
+
+@app.post("/user/", response_model=UserOut)
+async def create_user(user: UserIn) -> Any:
+    return user
+```
+
+Request body
+
+```json
+{
+  "username": "qwe",
+  "password": "123"
+}
+```
+
+Response body
+
+```json
+{
+  "username": "qwe"
+}
+```
+
+### RESPONSE MODEL ENCODING PARAMETERS WITH `response_model_exclude_unset`
+
+`main.py`
+
+```python
+class Pokemon(BaseModel):
+    name: str
+    hp: int = 0
+    weight: float | None = None
+    types: set[str] = set()
+    status: bool = False
+
+
+pokemons = {
+    1:  {
+        'name': 'Bulbasaur',
+        'hp': 45,
+        'weight': 6.9,
+        'types': ['GRASS', 'POISON'],
+        'status': True,
+    },
+    2: {
+        'name': 'Сharmander',
+        'weight': 8.5,
+    }
+}
+
+
+@app.post(
+    '/pokemons/{id}',
+    response_model=Pokemon,
+    response_model_exclude_unset=True,
+)
+async def create_pokemon(id: int):
+    return pokemons[id]
+```
+
+`http://127.0.0.1:8000/pokemons/1`
+
+```json
+{
+  "name": "Bulbasaur",
+  "hp": 45,
+  "weight": 6.9,
+  "types": [
+    "POISON",
+    "GRASS"
+  ],
+  "status": true
+}
+```
+
+`http://127.0.0.1:8000/pokemons/2`
+
+```json
+{
+  "name": "Сharmander",
+  "weight": 8.5
+}
+```
+
+## EXTRA MODELS
+
+This is especially the case for user models, because:
+1. The input model needs to be able to have a password.
+2. The output model should not have a password.
+3. The database model would probably need to have a hashed password.
+
+### EXAMPLE WITH MULTIPLE MODELS
+
+`main.py`
+
+```python
+class UserBase(BaseModel):
+    username: str
+    email: EmailStr
+
+
+class UserIn(UserBase):
+    password: str
+
+
+class UserOut(UserBase):
+    pass
+
+
+class UserInDB(UserBase):
+    hashed_password: str
+
+
+def password_hasher(password: str):
+    return "supersecret" + password
+
+
+def save_user(user_in: UserIn):
+    hashed_password = password_hasher(user_in.password)
+    user_in_db = UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
+
+    print("def save_user done")
+    return user_in_db
+
+
+@app.post("/user/", response_model=UserInDB)  # resoonse_model=UserOut
+async def create_user(user_in: UserIn):
+    user_saved = save_user(user_in)
+    return user_saved
+```
+
+Request body
+
+```json
+{
+  "username": "string",
+  "email": "user@example.com",
+  "password": "string"
+}
+```
+
+Response body
+
+```json
+{
+  "username": "string",
+  "email": "user@example.com",
+  "hashed_password": "supersecretstring"
+}
+```
+
+## RESPONSE STATUS CODE
+
+The same way you can specify a response model, you can also declare the HTTP status code used for the response with the parameter `status_code` in any of the `Path` operations.
+
+In short:
+
+- `100` and above are for "Information". You rarely use them directly. Responses with these status codes cannot have a body.
+- `200` and above are for "Successful" responses. These are the ones you would use the most. `200` is the default status code, which means everything was "OK".
+- `300` and above are for "Redirection". Responses with these status codes may or may not have a body.
+- `400` and above are for "Client error" responses. These are the second type you would probably use the most.
+- `500` and above are for server errors. You almost never use them directly. When something goes wrong at some part in your application code, or server, it will automatically return one of these status codes.
+
+### EXAMPLE WITH `status_code`
+
+`main.py`
+
+```python
+from fastapi import status
+
+
+# @app.post('/items/', status_code=200)
+@app.post('/items/', status_code=status.HTTP_202_ACCEPTED)
+async def create_item(name: str):
+    return {'name': name}
+```
+
+## `Form` FIELDS
+
+When you need to receive form fields instead of JSON, you can use `Form`
+
+`main.py`
+
+```python
+from fastapi import Form
+
+
+class User(BaseModel):
+    username: str
+    passwornd: str
+
+
+@app.post('/login/')
+async def login(
+    username: str = Form(),
+    passsword: str = Form()
+):
+    print('passsword:', passsword)
+    return {'username': username}
+```
+
+## REQUEST `Files`
+
+`UploadFile` has the following attributes:
+
+- `filename`: A str with the original file name that was uploaded (e.g. myimage.jpg).
+- `content_type`: A str with the content type (MIME type / media type) (e.g. image/jpeg).
+- `file`: A SpooledTemporaryFile (a file-like object). This is the actual Python file that you can pass directly to other functions or libraries that expect a "file-like" object.
+
+`UploadFile` has the following async methods. They all call the corresponding file methods underneath (using the internal SpooledTemporaryFile).
+
+- `write(data)`: Writes data (str or bytes) to the file.
+- `read(size)`: Reads size (int) bytes/characters of the file.
+- `seek(offset)`: Goes to the byte position offset (int) in the file. E.g., `await myfile.seek(0)` would go to the start of the file. This is especially useful if you run `await myfile.read()` once and then need to read the contents again.
+- `close()`: Closes the file.
+
+### NAME
+
+`main.py`
+
+```python
+from fastapi import File, UploadFile
+
+@app.post('/files/')
+async def create_file(file: bytes = File()):
+    return {'file': len(file)}
+
+
+@app.post('/uploadfile')
+async def upload_file(file: UploadFile):
+    return {'filename': file.filename}
+```
+
+### MULTIPLE FILE UPLOADS
+
+`main.py`
+
+```python
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import HTMLResponse
+
+app = FastAPI()
+
+
+@app.post("/files/")
+async def create_files(files: list[bytes] = File()):
+    return {"file_sizes": [len(file) for file in files]}
+
+
+@app.post("/uploadfiles/")
+async def create_upload_files(files: list[UploadFile]):
+    return {"filenames": [file.filename for file in files]}
+
+
+@app.get("/")
+async def main():
+    content = """
+<body>
+<form action="/files/" enctype="multipart/form-data" method="post">
+<input name="files" type="file" multiple>
+<input type="submit">
+</form>
+<form action="/uploadfiles/" enctype="multipart/form-data" method="post">
+<input name="files" type="file" multiple>
+<input type="submit">
+</form>
+</body>
+    """
+    return HTMLResponse(content=content)
+```
+
+## REQUEST `Forms` AND `Files`
+
+`main.py`
+
+```python
+@app.post('/files/')
+async def create_file(
+    file: bytes = File(),
+    second_file: UploadFile = File(),
+    token: str = Form(),
+):
+    return {
+        'file_size': len(file),
+        'token': token,
+        'fileb_content_type': second_file.content_type,
+    }
+```
+
+Response body
+
+```json
+{
+  "file_size": 693,
+  "token": "QWE-123",
+  "fileb_content_type": "application/rtf"
+}
+```
+
+## HANDLING ERRORS
+
+### EXAMPLE WITH `HTTPException`
+
+```python
+from fastapi import HTTPException
+
+
+items = {'QWE': 'Quality, Warranty, and Efficiency'}
+
+
+@app.get('/items/{item}')
+async def read_item(item: str):
+    if item not in items:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+        )
+    return {'item': items[item]}
+```
+
+`http://127.0.0.1:8000/items/QWE`
+
+Response body
+
+```json
+{
+  "item": "Quality, Warranty, and Efficiency"
+}
+```
+
+### CUSTOM EXEPTION HANDLERS
+
+`main.py`
+
+```python
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+
+class UnicornException(Exception):
+    def __init__(self, name: str):
+        self.name = name
+
+
+app = FastAPI()
+
+
+@app.exception_handler(UnicornException)
+async def unicorn_exception_handler(request: Request, exc: UnicornException):
+    return JSONResponse(
+        status_code=418,
+        content={"message": f"Oops! {exc.name} did something. There goes a rainbow..."},
+    )
+
+
+@app.get("/unicorns/{name}")
+async def read_unicorn(name: str):
+    if name == "yolo":
+        raise UnicornException(name=name)
+    return {"unicorn_name": name}
+```
+
+## `JSON` ENCODER
+
+There are some cases where you might need to convert a data type (Pydantic models) to something compatible with `JSON` (dict, list, etc). For example, if you need to store it in a database.
+
+`main.py`
+
+```python
+from datetime import datetime
+
+from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
+from pydantic import BaseModel
+
+fake_db = {}
+
+
+class Item(BaseModel):
+    title: str
+    timestamp: datetime
+    description: str | None = None
+
+
+app = FastAPI()
+
+
+@app.put("/items/{id}")
+def update_item(id: str, item: Item):
+    json_compatible_item_data = jsonable_encoder(item)
+    fake_db[id] = json_compatible_item_data
+```
+
+## DEPENDENCIES
+
+
+
+### DATABASE DEPENDENCIES WITH `yield`
+
+
+`main.py`
+
+```python
+async def get_db():
+    db = DBSession()
+    try:
+        yield db
+    finally:
+        db.close()
+```
+
+## AUTHORIZATION
+
+### `oauth2_scheme`
+
+`main.py`
+
+```python
+from fastapi import Depends, FastAPI
+from fastapi.security import OAuth2PasswordBearer
+
+app = FastAPI()
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+
+@app.get("/items/")
+async def read_items(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
 ```
 
 
