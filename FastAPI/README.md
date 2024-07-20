@@ -2,6 +2,11 @@
 
 [INFO](https://fastapi.tiangolo.com/tutorial/first-steps/)
 
+- **GET** - для получения данных.
+- **POST** - для создания новых данных.
+- **PUT** - для полного обновления существующих данных.
+- **PATCH** - для частичного обновления.
+- **DELETE** - для удаления данных.
 
 ## CREATE APP WITH `FastAPI`
 
